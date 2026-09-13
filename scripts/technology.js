@@ -43,7 +43,7 @@ function loadSprite() {
         }
         resolve();
       };
-      img.src = `assets/videos/compressed/spritesheet_q60_part${s}.jpg`;
+      img.src = `assets/videos/compressed/spritesheet_q60_part${s}.webp`;
     }));
   }
 
@@ -55,7 +55,7 @@ function loadSprite() {
         outroFrameH = outroSprite.naturalHeight / OUTRO_ROWS;
         resolve();
       };
-      outroSprite.src = "assets/videos/spritesheet-outro_optimized.webp";
+      outroSprite.src = "assets/videos/spritesheet-outro.jpg";
     })
   ]);
 }
