@@ -55,7 +55,7 @@ function loadSprite() {
         outroFrameH = outroSprite.naturalHeight / OUTRO_ROWS;
         resolve();
       };
-      outroSprite.src = "assets/videos/spritesheet-outro.jpg";
+      outroSprite.src = "assets/videos/spritesheet-outro_optimized.webp";
     })
   ]);
 }
