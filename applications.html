@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applications - SEYVRONA</title>
+    <link rel="stylesheet" href="Css/style.css">
+    <link rel="stylesheet" href="Css/applications.css">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/Icons/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;800&family=Michroma&display=swap" rel="stylesheet">
+    <script src="scripts/contact-modal.js" defer></script>
+    <script src="scripts/navbar-draw.js" defer></script>
+</head>
+<body>
+<header>
+  <svg class="navbar-draw" viewBox="0 0 1280 90" preserveAspectRatio="none">
+    <rect x="2" y="2" width="1276" height="86" rx="24" fill="none" stroke="#2ce5ff" stroke-width="1.2"/>
+  </svg>
+  <nav class="navbar">
+    <a href="index.html" class="logo">
+        <span class="logo-img"></span>
+        <span>SEYVRONA</span>
+  </a>
+    <ul class="nav-links">
+      <li class="dropdown">
+        <a href="solutions.html">Solutions</a><span class="arrow"></span>
+        <ul class="dropdown-menu">
+          <li><a href="solutions.html#residential">Residential</a></li>
+          <li><a href="solutions.html#commercial">Commercial</a></li>
+          <li><a href="solutions.html#industrial">Industrial</a></li>
+        </ul>
+      </li>
+      <li><a href="technology.html">Technology</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="applications.html" class="active" aria-current="page">Applications</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li>
+        <a class="contact-btn contact-btn-mobile">Contact Us</a>
+      </li>
+    </ul>
+    <a class="contact-btn">Contact Us</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+</header>
+
+<main>
+  <section class="app-hero">
+    <div class="container app-hero-inner">
+      <div class="hero-tag">
+        <span class="tag-pulse" aria-hidden="true"></span>
+        APPLICATIONS
+      </div>
+      <h1>One system.<br>Every hour of the day.</h1>
+      <p>Seyvrona runs quietly in the background of a house — from the first check of the morning to the last check before bed. Here's what that looks like.</p>
+    </div>
+  </section>
+
+  <section class="scenario-intro">
+    <div class="container">
+      <div class="section-title">
+        <span class="eyebrow">SMART HOME CONTROL</span>
+        <h2>A day with Seyvrona</h2>
+        <p>Five moments, one phone. Scroll to follow a typical day and see what the app shows at each one.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="scenario-stack">
+
+    <!-- Fixed left-side progress rail: 5 dots, one per scenario -->
+    <div class="scenario-dots" aria-hidden="true">
+      <span class="dot" data-dot="1"></span>
+      <span class="dot" data-dot="2"></span>
+      <span class="dot" data-dot="3"></span>
+      <span class="dot" data-dot="4"></span>
+      <span class="dot" data-dot="5"></span>
+    </div>
+
+    <!-- Single persistent phone: stays fixed on screen through all 5 scenarios,
+         its content (time + two rows) is swapped by JS as each panel becomes active -->
+         
+    <div class="scenario-phone-wrap">
+      <div class="phone-frame">
+        <span class="phone-btn phone-btn-vol-up" aria-hidden="true"></span>
+        <span class="phone-btn phone-btn-vol-down" aria-hidden="true"></span>
+        <span class="phone-btn phone-btn-power" aria-hidden="true"></span>
+        <div class="phone-notch" aria-hidden="true"></div>
+        <div class="phone-mock" role="img" aria-label="Phone preview of the current scenario">
+          <div class="phone-mock-head"><span>SEYVRONA</span><time id="phone-time">07:00</time></div>
+          <div class="phone-row">
+            <span class="row-icon" aria-hidden="true"></span>
+            <div><strong id="phone-row1-title">Solar, yesterday</strong><small id="phone-row1-sub">18.4 kWh</small></div>
+          </div>
+          <div class="phone-row">
+            <span class="row-icon" aria-hidden="true"></span>
+            <div><strong id="phone-row2-title">Battery</strong><small id="phone-row2-sub">91% overnight</small></div>
+          </div>
+        </div>
+        <div class="phone-home-bar" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <article class="scenario-wrap">
+      <section class="scenario-panel" data-dir="top" data-index="1" aria-labelledby="time-07"
+        data-phone-time="07:00" data-row1-title="Solar, yesterday" data-row1-sub="18.4 kWh"
+        data-row2-title="Battery" data-row2-sub="91% overnight">
+        <div class="panel-content">
+          <div class="container panel-inner">
+            <div class="panel-text">
+              <span class="scenario-time" id="time-07">07:00 — Wake up</span>
+              <h2>See where<br>you stand</h2>
+              <p>What the panels made yesterday, and how much the battery still has.</p>
+            </div>
+            <div class="panel-phone-mobile" aria-hidden="true">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-mock">
+                  <div class="phone-mock-head"><span>SEYVRONA</span><time>07:00</time></div>
+                  <div class="phone-row"><span class="row-icon"></span><div><strong>Solar, yesterday</strong><small>18.4 kWh</small></div></div>
+                  <div class="phone-row"><span class="row-icon"></span><div><strong>Battery</strong><small>91% overnight</small></div></div>
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+          </div>
+          <button class="scroll-down-btn" aria-label="Scroll to next section">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v16M5 13l7 7 7-7"/></svg>
+          </button>
+        </div>
+        <div class="panel-shutter" aria-hidden="true"><div class="strip"></div><div class="strip"></div><div class="strip"></div><div class="strip"></div><div class="strip"></div></div>
+      </section>
+    </article>
+
+    <article class="scenario-wrap">
+      <section class="scenario-panel" data-dir="bottom" data-index="2" aria-labelledby="time-0830"
+        data-phone-time="08:30" data-row1-title="Away mode on" data-row1-sub="Lights off, doors locked"
+        data-row2-title="Home secured" data-row2-sub="Notification sent">
+        <div class="panel-content">
+          <div class="container panel-inner">
+            <div class="panel-text">
+              <span class="scenario-time" id="time-0830">08:30 — Heading out</span>
+              <h2>Lock it all in one tap</h2>
+              <p>One tap at the door sets away mode: lights off, security armed, the app confirms it's done before you've reached the car.</p>
+            </div>
+            <div class="panel-media">
+              <div class="scene scene-shield scene-network" data-network-shape="M12 2 20 6v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z">
+                <div class="scene-glow"></div>
+                <canvas class="network-canvas" aria-hidden="true"></canvas>
+              </div>
+            </div>
+            <div class="panel-phone-mobile" aria-hidden="true">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-mock">
+                  <div class="phone-mock-head"><span>SEYVRONA</span><time>08:30</time></div>
+                  <div class="phone-row"><span class="row-icon"></span><div><strong>Away mode on</strong><small>Lights off, doors locked</small></div></div>
+                  <div class="phone-row"><span class="row-icon"></span><div><strong>Home secured</strong><small>Notification sent</small></div></div>
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-shutter" aria-hidden="true"><div class="strip"></div><div class="strip"></div><div class="strip"></div><div class="strip"></div><div class="strip"></div></div>
+      </section>
+    </article>
+
+    <article class="scenario-wrap">
+      <section class="scenario-panel" data-dir="top" data-index="3" aria-labelledby="time-14"
+        data-phone-time="14:00" data-row1-title="Source switched" data-row1-sub="Now running on battery"
+        data-row2-title="Saved today" data-row2-sub="2.1 kWh off peak rate">
+        <div class="panel-content">
+          <div class="container panel-inner">
+            <div class="panel-text">
+              <span class="scenario-time" id="time-14">14:00 — Peak hours</span>
+              <h2>Draw from the battery, not the grid</h2>
+              <p>When the grid gets expensive in the afternoon, the system switches to stored battery power on its own and lets you know what it saved.</p>
+            </div>
+            <div class="panel-media">
+              <div class="scene scene-bolt scene-network" data-network-shape="M13 2 3 14h7l-1 8 11-14h-7l0-6z">
+                <div class="scene-glow"></div>
+                <canvas class="network-canvas" aria-hidden="true"></canvas>
+              </div>
+            </div>
+            <div class="panel-phone-mobile" aria-hidden="true">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-mock">
+                  <div class="phone-mock-head"><span>SEYVRONA</span><time>14:00</time></div>
+                  <div class="phone-row"><span class="row-icon"></span><div><strong>Source switched</strong><small>Now running on battery</small></div></div>
+                  <div class="phone-row"><span class="row-icon"></span><div><strong>Saved today</strong><small>2.1 kWh off peak rate</small></div></div>
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-shutter" aria-hidden="true"><div class="strip"></div><div class="strip"></div><div class="strip"></div><div class="strip"></div><div class="strip"></div></div>
+      </section>
+    </article>
+
+    <article class="scenario-wrap">
+      <section class="scenario-panel" data-dir="bottom" data-index="4" aria-labelledby="time-18"
+        data-phone-time="18:00" data-row1-title="Welcome Home ran" data-row1-sub="Lights and climate set"
+        data-row2-title="Car charging" data-row2-sub="Started automatically">
+        <div class="panel-content">
+          <div class="container panel-inner">
+            <div class="panel-text">
+              <span class="scenario-time" id="time-18">18:00 — Back home</span>
+              <h2>Arrive to a house that's already ready</h2>
+              <p>Your location tells the house you're close: lights come up, the temperature settles in, and the car starts charging the moment it's plugged in.</p>
+            </div>
+            <div class="panel-media">
+              <div class="scene scene-home scene-network" data-network-shape="M3 11 12 3l9 8 M5 10v10h14V10">
+                <div class="scene-glow"></div>
+                <canvas class="network-canvas" aria-hidden="true"></canvas>
+              </div>
+            </div>
+            <div class="panel-phone-mobile" aria-hidden="true">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-mock">
+                  <div class="phone-mock-head"><span>SEYVRONA</span><time>18:00</time></div>
+                  <div class="phone-row"><span class="row-icon"></span><div><strong>Welcome Home ran</strong><small>Lights and climate set</small></div></div>
+                  <div class="phone-row"><span class="row-icon"></span><div><strong>Car charging</strong><small>Started automatically</small></div></div>
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-shutter" aria-hidden="true"><div class="strip"></div><div class="strip"></div><div class="strip"></div><div class="strip"></div><div class="strip"></div></div>
+      </section>
+    </article>
+
+    <article class="scenario-wrap scenario-wrap-last">
+      <section class="scenario-panel" data-dir="top" data-index="5" aria-labelledby="time-22"
+        data-phone-time="22:00" data-row1-title="Cameras checked" data-row1-sub="All clear"
+        data-row2-title="Night mode on" data-row2-sub="Security still active">
+        <div class="panel-content">
+          <div class="container panel-inner">
+            <div class="panel-text">
+              <span class="scenario-time" id="time-22">22:00 — Before bed</span>
+              <h2>Check in, then switch off</h2>
+              <p>A last look at the cameras from bed, then one tap sends the house into night mode — minimal lighting, security still watching.</p>
+            </div>
+            <div class="panel-media">
+              <div class="scene scene-moon scene-network" data-network-shape="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z">
+                <div class="scene-glow"></div>
+                <canvas class="network-canvas" aria-hidden="true"></canvas>
+              </div>
+            </div>
+            <div class="panel-phone-mobile" aria-hidden="true">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-mock">
+                  <div class="phone-mock-head"><span>SEYVRONA</span><time>22:00</time></div>
+                  <div class="phone-row"><span class="row-icon"></span><div><strong>Cameras checked</strong><small>All clear</small></div></div>
+                  <div class="phone-row"><span class="row-icon"></span><div><strong>Night mode on</strong><small>Security still active</small></div></div>
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-shutter" aria-hidden="true"><div class="strip"></div><div class="strip"></div><div class="strip"></div><div class="strip"></div><div class="strip"></div></div>
+      </section>
+    </article>
+
+  </div>
+</main>
+
+<section class="cta">
+  <div class="container">
+    <h2>Ready to Build the Future?</h2>
+    <p>Let's design your complete smart energy ecosystem.</p>
+    <a href="#" class="btn-primary contact-btn" data-subject="Request a Quote">Get Started</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-content">
+    <div>
+      <h3>SEYVRONA</h3>
+      <p>Next generation renewable energy company.</p>
+    </div>
+    <div>
+      <h4>Products</h4>
+      <a href="#">Solar</a>
+      <a href="#">Battery</a>
+      <a href="#">EV Charging</a>
+      <a href="#">Security</a>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <a href="about.html">About</a>
+      <a href="applications.html">Applications</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="scripts/applications.js" defer></script>
+<script type="module" src="scripts/dropdown.js"></script>
+</body>
+</html>

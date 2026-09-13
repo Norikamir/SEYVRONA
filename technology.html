@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technology-SEYVRONA</title>
+    <link rel="stylesheet" href="Css/style.css">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/Icons/favicon.png">
+    <link rel="stylesheet" href="Css/technology.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="scripts/contact-modal.js" defer></script>
+    <script src="scripts/navbar-draw.js" defer></script>
+    
+</head>
+<body>
+
+   <header>
+
+   <svg class="navbar-draw" viewBox="0 0 1280 90" preserveAspectRatio="none">
+    <rect x="2" y="2" width="1276" height="86" rx="18"
+          fill="none" stroke="#2ce5ff" stroke-width="2"/>
+  </svg>
+
+<nav class="navbar">
+  <a href="index.html" class="logo">
+        <span class="logo-img"></span>
+        <span>SEYVRONA</span>
+    </a>
+
+<ul class="nav-links">
+  <li class="dropdown">
+    <a href="solutions.html">Solutions</a><span class="arrow"></span>
+    <ul class="dropdown-menu">
+    <li><a href="solutions.html#residential">Residential</a></li>
+    <li><a href="solutions.html#commercial">Commercial</a></li>
+    <li><a href="solutions.html#industrial">Industrial</a></li>
+  </ul>
+</li>
+    <li><a href="technology.html">Technology</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="applications.html">Applications</a></li>
+    <li><a href="about.html">About Us</a></li>
+
+    <li>
+      <a class="contact-btn contact-btn-mobile">Contact Us</a>
+    </li>
+</ul>
+
+<a class="contact-btn">Contact Us</a>
+
+<button class="menu-toggle" id="menuToggle" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+</nav>
+
+</header>
+
+<section id="tech-process" class="tech-process">
+
+<div class="tech-process-intro">
+  <span class="hero-tag">HOW IT'S MADE</span>
+  <h2><span class="word">From</span> <span class="word">Raw</span> <span class="word">Silicon</span>
+  <span class="gradient-text"><span class="word">to</span> <span class="word">Solar</span> <span class="word">Power</span></span>
+  </h2>
+  <p>Scroll to follow how a single solar panel is engineered — from raw crystal to a power-generating surface.</p>
+
+  <div class="scroll-indicator">
+    <svg width="22" height="34" viewBox="0 0 22 34" fill="none">
+      <rect x="1" y="1" width="20" height="32" rx="10" stroke="#2ce5ff" stroke-width="1.5"/>
+      <circle class="scroll-dot" cx="11" cy="10" r="3" fill="#2ce5ff"/>
+    </svg>
+    <svg class="scroll-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none">
+      <path d="M1 1L7 7L13 1" stroke="#2ce5ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</div>
+
+ <div class="tech-process-pin">
+
+  <div class="process-video-frame">
+    <canvas id="processCanvas" class="process-video"></canvas>
+    <div class="process-video-glow"></div>
+
+  <div class="video-preloader" id="videoPreloader">
+      <div class="video-preloader-ring"></div>
+</div>
+  </div>
+
+  <div class="process-info">
+    <div class="process-step-number" id="processStepNumber">01 / 05</div>
+    <div class="process-label" id="processLabel">Raw Silicon Ingot</div>
+    <div class="process-trust" id="processTrust">99.999% purity — the foundation of a 25-year lifespan</div>
+
+    <div class="process-progress">
+      <div class="process-progress-bar" id="processProgressBar"></div>
+    </div>
+  </div>
+
+</div>
+
+</section>
+
+<footer>
+<div class="container footer-content">
+    <div>
+    <h3>SEYVRONA</h3>
+    <p>Next generation renewable energy company.</p>
+    </div>
+    <div>
+
+    <h4>Products</h4>
+    <a href="#">Solar</a>
+    <a href="#">Battery</a>
+    <a href="#">EV Charging</a>
+    <a href="#">Security</a>
+    </div>
+
+    <div>
+    <h4>Company</h4>
+    <a href="#">About</a>
+    <a href="#">Projects</a>
+    <a href="#">Contact</a>
+    </div>
+</div>
+</footer>
+
+
+
+<script type="module" src="scripts/dropdown.js"></script>
+<script src="scripts/technology.js"></script>
+</body>
+</html>

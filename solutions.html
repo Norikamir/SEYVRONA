@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solutions-SEYVRONA</title>
+    <link rel="stylesheet" href="Css/style.css">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/Icons/favicon.png">
+    <link rel="stylesheet" href="Css/solutions.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/meshoptimizer@0.18.1/meshopt_decoder.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script>
+    <script src="scripts/contact-modal.js" defer></script>
+    <script src="scripts/navbar-draw.js" defer></script>
+    <script src="scripts/quiz-modal.js" defer></script>
+
+</head>
+<body>
+
+<header>
+
+   <svg class="navbar-draw" viewBox="0 0 1280 90" preserveAspectRatio="none">
+    <rect x="2" y="2" width="1276" height="86" rx="18" 
+          fill="none" stroke="#2ce5ff" stroke-width="2"/>
+  </svg>
+
+
+<nav class="navbar">
+  <a href="index.html" class="logo">
+      <span class="logo-img"></span>
+      <span>SEYVRONA</span>
+  </a>
+
+<ul class="nav-links">
+
+  <li class="dropdown">
+    <a href="#">Solutions</a><span class="arrow"></span>
+    <ul class="dropdown-menu">
+    <li><a href="#residential">Residential</a></li>
+    <li><a href="#commercial">Commercial</a></li>
+    <li><a href="#industrial">Industrial</a></li>
+  </ul>
+</li>
+    <li><a href="technology.html">Technology</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="applications.html">Applications</a></li>
+    <li><a href="about.html">About Us</a></li>
+
+    <li>
+      <a class="contact-btn contact-btn-mobile">Contact Us</a>
+    </li>
+</ul>
+
+<a class="contact-btn">Contact Us</a>
+
+<button class="menu-toggle" id="menuToggle" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+</nav>
+
+</header>
+
+
+ <!-- Residential -->
+
+  <section id="residential" class="solutions-hero">
+    <div class="container">
+      <div class="solutions-video-wrap">
+        <video class="solutions-video" autoplay muted loop playsinline>
+          <source src="assets/videos/solution-1.mp4" type="video/mp4">
+        </video>
+
+        <!-- Floating labels over the video -->
+         
+        <div class="feature-tag tag-1">
+          <span class="tag-dot"></span> 0ms Switchover
+        </div>
+        <div class="feature-tag tag-2">
+          <span class="tag-dot"></span> Smart EV Charging
+        </div>
+        <div class="feature-tag tag-3">
+          <span class="tag-dot"></span> Remote Control
+        </div>
+      </div>
+
+      <div class="solutions-heading">
+        <span class="hero-tag">RESIDENTIAL PLANS</span>
+        <h2>Independence for <span>Your Home</span></h2>
+        <p>Full backup power, smart automation, and zero interruption — even when the grid goes down.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Offers -->
+
+  <section class="offers-section">
+    <div class="container">
+      <div class="offers-grid">
+
+        <div class="offer-card">
+          <h3 class="offer-name">Starter</h3>
+          <p class="offer-desc">Solar essentials for lower bills</p>
+          <ul class="offer-features">
+            <li>Solar panel installation</li>
+            <li>Basic app monitoring</li>
+            <li>Standard support</li>
+          </ul>
+          <a class="offer-cta contact-btn" data-subject="Request a Quote">Get Started</a>
+        </div>
+
+        <div class="offer-card featured">
+          <span class="badge">Most Popular</span>
+          <h3 class="offer-name">Independence</h3>
+          <p class="offer-desc">Full backup power & smart control</p>
+          <ul class="offer-features">
+            <li>Everything in Starter</li>
+            <li>Battery storage system</li>
+            <li>0ms automatic backup power</li>
+            <li>Smart EV charging</li>
+          </ul>
+          <a style="cursor: pointer;" class="offer-cta quote-quiz-btn">Calculate My Price</a>
+        </div>
+
+        <div class="offer-card">
+          <h3 class="offer-name">Full Control</h3>
+          <p class="offer-desc">Complete smart home ecosystem</p>
+          <ul class="offer-features">
+            <li>Everything in Independence</li>
+            <li>Security integration</li>
+            <li>Apple/Google/Telegram control</li>
+            <li>Priority support</li>
+          </ul>
+          <a href="#" class="offer-cta contact-btn" data-subject="Request a Quote">Get Started</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="homes-counter">
+      <h3 class="counter-number" data-target="2400">0</h3>
+      <span class="counter-plus">+</span>
+      <p>Homes Protected</p>
+</div>
+
+
+<!-- Commercial -->
+ 
+
+<section id="commercial" class="solutions-hero-commercial">
+  <div class="container commercial-container">
+
+    <div class="commercial-content">
+      <span class="hero-tag">COMMERCIAL ENERGY SOLUTIONS</span>
+      <h2>Powering Business. <br>Maximizing <span>Performance</span>.</h2>
+      <p>Intelligent energy systems that reduce costs, ensure uptime, and drive sustainability for your entire operation.</p>
+      <div class="commercial-buttons">
+        <a href="#" class="btn-primary">Schedule a Consultation</a>
+        <button disabled class="btn-secondary">Explore Solutions</button>
+      </div>
+    </div>
+
+    <div class="commercial-stats-card">
+      <div class="stats-card-header">
+        <h4>Real-time Energy Overview</h4>
+        <span class="live-dot"><span class="dot"></span> Live</span>
+      </div>
+
+      <div class="stats-main">
+        <span class="stats-label">Energy Usage</span>
+        <div class="stats-value"><span class="stats-number">1,250</span> <span class="stats-unit">MWh</span></div>
+        <span class="stats-delta">+12.5% vs last month</span>
+      </div>
+
+      <div class="stats-mini-grid">
+        <div class="mini-stat">
+          <span class="mini-label">Savings</span>
+          <span class="mini-value">$18,430</span>
+        </div>
+        <div class="mini-stat">
+          <span class="mini-label">CO₂ Avoided</span>
+          <span class="mini-value">24.6 <small>Tons</small></span>
+        </div>
+        <div class="mini-stat">
+          <span class="mini-label">Efficiency</span>
+          <span class="mini-value">98.6%</span>
+        </div>
+      </div>
+
+      <div class="stats-status-list">
+        <div class="status-row">
+          <span>Solar Generation</span>
+          <span>860 kW</span>
+        </div>
+        <div class="status-row">
+          <span>Battery Storage</span>
+          <span class="status-highlight">620 kW · 87%</span>
+        </div>
+        <div class="status-row">
+          <span>Grid Supply</span>
+          <span>370 kW</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="commercial-scene-wrap">
+      <canvas id="webgl-commercial"></canvas>
+
+      <div class="commercial-labels">
+        <div class="building-label" id="label-office">
+          <span class="label-title">Office Complex</span>
+          <span class="label-value">480 kW</span>
+        </div>
+        <div class="building-label" id="label-warehouse">
+          <span class="label-title">Warehouse</span>
+          <span class="label-value">650 kW</span>
+        </div>
+        <div class="building-label" id="label-depot">
+          <span class="label-title">EV Fleet Depot</span>
+          <span class="label-value">300 kW</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Industrial -->
+
+<section id="industrial" class="solutions-hero industrial-hero">
+  <div class="container">
+    <!-- <span class="hero-tag">INDUSTRIAL ENERGY SOLUTIONS</span> -->
+    <div class="solutions-video-wrap industrial-photo-wrap">
+      <img src="assets/industrial-hero.webp" alt="Industrial power substation" class="industrial-photo">
+
+      <div class="industrial-overlay"></div>
+
+      <!-- Плавающие ярлычки поверх фото -->
+      <div class="feature-tag tag-1">
+        <span class="tag-dot"></span> Peak Load Shaving
+      </div>
+      <div class="feature-tag tag-2">
+        <span class="tag-dot"></span> 99.99% Uptime SLA
+      </div>
+      <div class="feature-tag tag-3">
+        <span class="tag-dot"></span> 24/7 Monitoring
+      </div>
+    </div>
+
+    <div class="solutions-heading">
+      <span class="hero-tag">INDUSTRIAL ENERGY SOLUTIONS</span>
+      <h2>Built for Scale. <span>Engineered for Uptime.</span></h2>
+      <p>Custom-designed microgrids, redundant power systems, and 24/7 monitoring for facilities where downtime isn't an option.</p>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+
+<div class="container footer-content">
+
+    <div>
+    <h3>SEYVRONA</h3>
+    <p>Next generation renewable energy company.</p>
+
+</div>
+
+<div>
+
+    <h4>Products</h4>
+    <a href="#">Solar</a>
+    <a href="#">Battery</a>
+    <a href="#">EV Charging</a>
+    <a href="#">Security</a>
+
+</div>
+
+<div>
+
+    <h4>Company</h4>
+    <a href="#">About</a>
+    <a href="#">Projects</a>
+    <a href="#">Contact</a>
+
+</div>
+</div>
+</footer>
+
+
+<script src="scripts/script.js"></script>
+<script type="module" src="scripts/dropdown.js"></script>
+<script src="scripts/counter.js"></script>
+<script src="scripts/commercial-scene.js"></script>
+</body>
+</html>

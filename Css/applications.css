@@ -1,0 +1,578 @@
+/* ==========================================================
+   APPLICATIONS PAGE — split-screen, motion-only, no photo/video
+   ========================================================== */
+
+:root{
+    --app-bg:#050b17;
+    --app-bg-alt:#0d1424;
+    --app-accent:#2ce5ff;
+    --app-text:#c3d3e4;
+    --app-text-muted:#9ca7ba;
+    --app-text-dim:#96a4b9;
+    --app-border:rgba(255,255,255,.1);
+    --app-surface:rgba(255,255,255,.06);
+}
+
+.nav-links a.active{
+    color:var(--app-accent);
+}
+
+/* Page hero */
+.app-hero{
+    padding:200px 0 60px;
+}
+.app-hero-inner{
+    max-width:720px;
+}
+.app-hero h1{
+    font-family:'Michroma', sans-serif;
+    font-size:clamp(32px, 3.6vw, 46px);
+    line-height:1.25;
+    margin:24px 0 22px;
+}
+.app-hero p{
+    color:var(--app-text-muted);
+    font-size:17px;
+    line-height:1.8;
+    max-width:560px;
+}
+
+.scenario-intro{
+    padding:40px 0 20px;
+}
+
+/* ==========================================================
+   FIXED LEFT-SIDE PROGRESS RAIL — 5 dots, current one lit
+   ========================================================== */
+.scenario-dots{
+    position:fixed;
+    left:28px;
+    top:50%;
+    transform:translateY(-50%);
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    z-index:40;
+}
+.scenario-dots .dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:rgba(255,255,255,.18);
+    transition:background .35s ease, transform .35s ease, box-shadow .35s ease;
+}
+.scenario-dots .dot.is-active{
+    background:var(--app-accent);
+    transform:scale(1.6);
+    box-shadow:0 0 10px rgba(44,229,255,.7);
+}
+
+/* ==========================================================
+   FULL-SCREEN STACKED PANELS
+   ========================================================== */
+.scenario-stack{
+    position:relative;
+}
+.scenario-wrap{
+    position:relative;
+    height:200vh;
+}
+.scenario-wrap-last{
+    height:100vh;
+}
+.scenario-panel{
+    position:sticky;
+    top:0;
+    height:100vh;
+    width:100%;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    background:
+        radial-gradient(circle at 70% 30%, rgba(44,229,255,.08), transparent 55%),
+        linear-gradient(160deg, var(--app-bg-alt), var(--app-bg));
+}
+
+/* Split-screen content */
+.panel-content{
+    position:relative;
+    z-index:2;
+    width:100%;
+}
+.panel-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:60px;
+}
+.panel-text{
+    flex:0 0 36%;
+    max-width:440px;
+    padding-left:40px;
+}
+.scenario-time{
+    display:inline-block;
+    color:var(--app-accent);
+    font-size:13px;
+    letter-spacing:2px;
+    font-weight:600;
+    margin-bottom:18px;
+}
+.panel-text h2{
+    font-family:'Michroma', sans-serif;
+    font-size:clamp(28px, 3.2vw, 40px);
+    line-height:1.3;
+    margin-bottom:20px;
+}
+.panel-text p{
+    color:var(--app-text);
+    font-size:16px;
+    line-height:1.75;
+    max-width:420px;
+}
+
+/* Icon scene — sits in the flex flow between the text and the phone card, no imagery */
+.panel-media{
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-width:0;
+}
+.scene{
+    position:relative;
+    width:120px;
+    height:120px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+}
+.scene-glow{
+    position:absolute;
+    inset:-20px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(44,229,255,.22), transparent 70%);
+    animation:scene-pulse 3.4s ease-in-out infinite;
+}
+.scene svg{
+    position:relative;
+    z-index:1;
+    filter:drop-shadow(0 0 10px rgba(44,229,255,.4));
+}
+@keyframes scene-pulse{
+    0%, 100%{ transform:scale(.85); opacity:.55; }
+    50%{ transform:scale(1.15); opacity:1; }
+}
+.scene-bolt .scene-glow{ animation-duration:1.8s; }
+.scene-moon .scene-glow{ animation-duration:5s; }
+
+/* Constellation/network scenes — panels 2, 3, 4, 5 */
+.scene-network{
+    width:260px;
+    height:260px;
+}
+.network-canvas{
+    position:relative;
+    z-index:1;
+    width:100%;
+    height:100%;
+    display:block;
+    pointer-events:none;
+}
+
+/* Phone mock overlay card */
+.phone-mock{
+    position:relative;
+    z-index:3;
+    flex:0 0 280px;
+    padding:18px;
+    border-radius:20px;
+    background:var(--app-surface);
+    border:1px solid var(--app-border);
+    backdrop-filter:blur(20px);
+    box-shadow:0 25px 60px rgba(0,0,0,.4);
+}
+.phone-mock-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:'Michroma', sans-serif;
+    font-size:10px;
+    letter-spacing:1px;
+    color:var(--app-accent);
+    margin-bottom:14px;
+}
+.phone-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:10px 0;
+    border-top:1px solid rgba(255,255,255,.08);
+}
+.phone-row:first-of-type{
+    border-top:none;
+    padding-top:0;
+}
+.phone-row svg{
+    flex-shrink:0;
+    stroke:var(--app-accent);
+}
+.phone-row strong{
+    display:block;
+    font-size:13px;
+    font-weight:600;
+}
+.phone-row small{
+    color:var(--app-text-dim);
+    font-size:12px;
+}
+
+/* Shutter transition between panels — already used elsewhere in the site */
+.panel-shutter{
+    position:absolute;
+    inset:0;
+    z-index:5;
+    display:flex;
+    pointer-events:none;
+}
+.panel-shutter .strip{
+    flex:1;
+    background:var(--app-bg);
+    transform:scaleY(1);
+    transform-origin:top;
+}
+.scenario-panel[data-dir="bottom"] .panel-shutter .strip{
+    transform-origin:bottom;
+}
+
+@media(prefers-reduced-motion: reduce){
+    .panel-shutter .strip{
+        transform:none !important;
+    }
+    .scene-glow{
+        animation:none !important;
+    }
+}
+
+/* Responsive */
+@media(max-width:900px){
+    .scenario-wrap{ height:auto; }
+    .scenario-wrap-last{ height:auto; }
+    .scenario-panel{
+        position:relative;
+        top:auto;
+        height:auto;
+        min-height:90vh;
+        padding:90px 0 60px;
+    }
+    .panel-inner{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:36px;
+    }
+    .panel-text{
+        flex:none;
+        padding-left:0;
+        max-width:none;
+    }
+    .panel-media{
+        flex:none;
+        width:100%;
+        justify-content:center;
+        margin-bottom:4px;
+    }
+    .phone-mock{
+        width:100%;
+        flex:none;
+    }
+    .scenario-dots{
+        left:12px;
+    }
+}
+@media(max-width:600px){
+    .app-hero{
+        padding-top:170px;
+    }
+    .panel-text h2{
+        font-size:24px;
+    }
+    .scenario-dots{
+        display:none;
+    }
+}
+
+/* ==========================================================
+   PANEL 1 — split-screen redesign (07:00 Wake up)
+   ========================================================== */
+.scenario-panel[data-index="1"]{
+    background:var(--app-bg);
+}
+.scenario-panel[data-index="1"]::after{
+    content:"";
+    position:absolute;
+    top:0; right:0; bottom:0;
+    width:50%;
+    background:
+        radial-gradient(circle at 60% 35%, rgba(44,229,255,.14), transparent 60%),
+        var(--app-bg-alt);
+    border-left:1px solid var(--app-border);
+    z-index:0;
+}
+.scenario-panel[data-index="1"] .panel-inner{
+    justify-content:flex-start;
+}
+.scenario-panel[data-index="1"] .panel-text{
+    flex:0 0 42%;
+}
+
+/* Persistent phone — stays fixed on screen through all 5 scenarios;
+   its content is swapped by JS as each panel becomes active */
+
+.scenario-phone-wrap{
+    position:sticky;
+    top:max(calc(var(--header-h, 140px) + 20px), 55vh);
+    left:0;
+    right:0;
+    height:0;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    padding-right:8%;
+    z-index:6;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .45s ease;
+}
+.scenario-phone-wrap .phone-frame{
+     width:min(clamp(220px, 21vw, 300px), calc((100vh - var(--header-h, 140px) - 40px) * 9 / 18.5));
+}
+.scenario-phone-wrap.is-visible{
+    opacity:1;
+    pointer-events:auto;
+}
+.phone-frame{
+    position:relative;
+    width:clamp(220px, 21vw, 300px);
+    aspect-ratio:9/18.5;
+    padding:12px;
+    border-radius:52px;
+    background:linear-gradient(155deg, #2b313b, #090b0f 60%);
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.55),
+        inset 0 0 0 2px rgba(255,255,255,.07);
+}
+.phone-frame .phone-mock{
+    position:relative;
+    z-index:1;
+    flex:none;
+    height:100%;
+    width:100%;
+    padding:34px 18px 26px;
+    border-radius:42px;
+    background:var(--app-bg-alt);
+    border:1px solid rgba(255,255,255,.06);
+    box-shadow:none;
+    backdrop-filter:none;
+    overflow:hidden;
+}
+.phone-notch{
+    position:absolute;
+    top:14px;
+    left:50%;
+    transform:translateX(-50%);
+    width:88px;
+    height:24px;
+    border-radius:14px;
+    background:#000;
+    z-index:3;
+}
+.phone-home-bar{
+    position:absolute;
+    bottom:12px;
+    left:50%;
+    transform:translateX(-50%);
+    width:108px;
+    height:4px;
+    border-radius:3px;
+    background:rgba(255,255,255,.4);
+    z-index:3;
+}
+.phone-btn{
+    position:absolute;
+    z-index:1;
+    background:linear-gradient(90deg,#1b1f26,#050608);
+}
+.phone-btn-power{
+    right:-3px;
+    top:150px;
+    width:3px;
+    height:76px;
+    border-radius:0 3px 3px 0;
+}
+.phone-btn-vol-up{
+    left:-3px;
+    top:120px;
+    width:3px;
+    height:38px;
+    border-radius:3px 0 0 3px;
+}
+.phone-btn-vol-down{
+    left:-3px;
+    top:172px;
+    width:3px;
+    height:38px;
+    border-radius:3px 0 0 3px;
+}
+@media(max-height:760px){
+    .scenario-phone-wrap .phone-frame{
+         width:min(clamp(200px, 19vw, 260px), calc((100vh - var(--header-h, 140px) - 40px) * 9 / 18.5));
+    }
+}
+.row-icon{
+    width:28px;
+    height:28px;
+    border-radius:8px;
+    background:linear-gradient(160deg, rgba(44,229,255,.4), rgba(44,229,255,.14));
+    flex-shrink:0;
+}
+/* Reserve room on the right of panels 2-5 so their scene stays clear of the fixed phone */
+.panel-inner:has(.panel-media){
+    padding-right:360px;
+}
+.scroll-down-btn{
+    position:absolute;
+    left:50%;
+    bottom:36px;
+    z-index:2;
+    transform:translateX(-50%);
+    width:48px;
+    height:48px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:1px solid var(--app-border);
+    border-radius:50%;
+    background:rgba(255,255,255,.05);
+    color:var(--app-text);
+    cursor:pointer;
+    animation:scroll-bounce 2s ease-in-out infinite;
+}
+@keyframes scroll-bounce{
+    0%,100%{ transform:translate(-50%,0); }
+    50%{ transform:translate(-50%,6px); }
+}
+@media(prefers-reduced-motion: reduce){
+    .scroll-down-btn{ animation:none; }
+}
+@media(max-width:900px){
+    .scenario-panel[data-index="1"]::after{
+        display:none;
+    }
+    /* The shared fixed phone only makes sense next to a full-screen
+       pinned panel; on mobile each section is normal document flow,
+       so it's hidden here and each panel shows its own small inline
+       phone instead (.panel-phone-mobile below). */
+    .scenario-phone-wrap{
+        display:none;
+    }
+    .panel-inner:has(.panel-media){
+        padding-right:0;
+    }
+    .scroll-down-btn{
+        display:none;
+    }
+}
+
+/* Per-panel inline phone — mobile only. Sits normally between the
+   copy and the icon scene, never overlapping either. */
+.panel-phone-mobile{
+    display:none;
+}
+@media(max-width:900px){
+    .panel-phone-mobile{
+        display:block;
+        align-self:center;
+        width:180px;
+        margin:4px 0 4px;
+    }
+    .panel-phone-mobile .phone-frame{
+        position:relative;
+        width:100%;
+        aspect-ratio:9/18.5;
+        max-height:320px;
+        padding:9px;
+        border-radius:34px;
+        background:linear-gradient(155deg, #2b313b, #090b0f 60%);
+        box-shadow:0 18px 40px rgba(0,0,0,.5), inset 0 0 0 2px rgba(255,255,255,.07);
+    }
+    .panel-phone-mobile .phone-mock{
+        position:relative;
+        height:100%;
+        width:100%;
+        padding:22px 14px 16px;
+        border-radius:26px;
+        background:var(--app-bg-alt);
+        border:1px solid rgba(255,255,255,.06);
+        box-shadow:none;
+        backdrop-filter:none;
+        overflow:hidden;
+    }
+    .panel-phone-mobile .phone-notch{
+        position:absolute;
+        top:8px;
+        left:50%;
+        transform:translateX(-50%);
+        width:54px;
+        height:13px;
+        border-radius:8px;
+        background:#000;
+        z-index:2;
+    }
+    .panel-phone-mobile .phone-home-bar{
+        position:absolute;
+        bottom:6px;
+        left:50%;
+        transform:translateX(-50%);
+        width:66px;
+        height:3px;
+        border-radius:2px;
+        background:rgba(255,255,255,.4);
+        z-index:2;
+    }
+    .panel-phone-mobile .phone-mock-head{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        font-family:'Michroma', sans-serif;
+        font-size:8px;
+        letter-spacing:.5px;
+        color:var(--app-accent);
+        margin-bottom:10px;
+    }
+    .panel-phone-mobile .phone-row{
+        display:flex;
+        align-items:center;
+        gap:8px;
+        padding:7px 0;
+        border-top:1px solid rgba(255,255,255,.08);
+    }
+    .panel-phone-mobile .phone-row:first-of-type{
+        border-top:none;
+        padding-top:0;
+    }
+    .panel-phone-mobile .row-icon{
+        width:18px;
+        height:18px;
+        border-radius:5px;
+    }
+    .panel-phone-mobile .phone-row strong{
+        display:block;
+        font-size:10px;
+        font-weight:600;
+    }
+    .panel-phone-mobile .phone-row small{
+        color:var(--app-text-dim);
+        font-size:9px;
+    }
+}

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products-SEYVRONA</title>
+    <link rel="stylesheet" href="Css/style.css">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/Icons/favicon.png">
+    <link rel="stylesheet" href="Css/solutions.css">
+    <link rel="stylesheet" href="Css/products.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="scripts/contact-modal.js" defer></script>
+    <script src="scripts/navbar-draw.js" defer></script>
+
+</head>
+<body>
+
+<header>
+
+   <svg class="navbar-draw" viewBox="0 0 1280 90" preserveAspectRatio="none">
+    <rect x="2" y="2" width="1276" height="86" rx="18" 
+          fill="none" stroke="#2ce5ff" stroke-width="2"/>
+  </svg>
+
+<nav class="navbar">
+  <a href="index.html" class="logo">
+      <span class="logo-img"></span>
+      <span>SEYVRONA</span>
+  </a>
+
+<ul class="nav-links">
+
+ <li class="dropdown">
+    <a href="solutions.html">Solutions</a><span class="arrow"></span>
+    <ul class="dropdown-menu">
+    <li><a href="solutions.html#residential">Residential</a></li>
+    <li><a href="solutions.html#commercial">Commercial</a></li>
+    <li><a href="solutions.html#industrial">Industrial</a></li>
+  </ul>
+</li>
+    <li><a href="technology.html">Technology</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="applications.html">Applications</a></li>
+    <li><a href="about.html">About Us</a></li>
+
+     <li>
+      <a class="contact-btn contact-btn-mobile">Contact Us</a>
+    </li>
+
+
+</ul>
+
+<a class="contact-btn">Contact Us</a>
+
+<button class="menu-toggle" id="menuToggle" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+</nav>
+</header>
+
+
+<!-- HERO -->
+
+<section class="products-hero">
+  <div class="container">
+    <span class="hero-tag">FULL LINEUP</span>
+    <h1>
+      <span class="word">Products</span> <span class="word">Built</span>
+      <span class="gradient-text"><span class="word">for</span> <span class="word">Every</span> <span class="word">System</span></span>
+    </h1>
+    <p>Solar panels, batteries, EV chargers and security hardware — engineered as one connected ecosystem.</p>
+  </div>
+</section>
+
+<!-- SOLAR -->
+
+<section class="product-category" id="solar">
+  <div class="container">
+    <span class="category-tag">01 — SOLAR</span>
+
+    <div class="product-hero-card">
+      <img src="assets/products/solar-panel.webp" alt="SunCore X1 solar panel">
+      <div class="product-overlay-title">SunCore X1</div>
+      <div class="feature-tag tag-1"><span class="tag-dot"></span> 22.8% Efficiency</div>
+      <div class="feature-tag tag-2"><span class="tag-dot"></span> 25-Year Warranty</div>
+    </div>
+
+   <div class="product-versions-grid">
+
+      <div class="offer-card" data-image="assets/products/solar-panel.webp">
+        <h3 class="offer-name">Standard</h3>
+        <p class="offer-desc">Entry-level panel, 400W output</p>
+        <span class="product-price" data-target="219">$0</span>
+        <a href="#" class="offer-cta">Choose</a>
+      </div>
+      <div class="offer-card featured" data-image="assets/products/solar-panel-pro.webp">
+        <span class="badge">Best Value</span>
+        <h3 class="offer-name">Pro</h3>
+        <p class="offer-desc">High-efficiency cells, 450W output</p>
+        <span class="product-price" data-target="289">$0</span>
+        <a href="#" class="offer-cta">Choose</a>
+      </div>
+      <div class="offer-card" data-image="assets/products/solar-panel-elite.webp">
+        <h3 class="offer-name">Elite</h3>
+        <p class="offer-desc">Max output 500W, black frame</p>
+        <span class="product-price" data-target="369">$0</span>
+        <a href="#" class="offer-cta">Choose</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BATTERY -->
+
+<section class="product-category" id="battery">
+  <div class="container">
+    <span class="category-tag">02 — BATTERY STORAGE</span>
+
+    <div class="product-hero-card">
+      <img src="assets/products/battery-unit.webp" alt="PowerCell home battery">
+      <div class="product-overlay-title">PowerCell 10</div>
+      <div class="feature-tag tag-1"><span class="tag-dot"></span> 0ms Switchover</div>
+      <div class="feature-tag tag-2"><span class="tag-dot"></span> 10-Year Warranty</div>
+    </div>
+
+    <div class="product-versions-grid">
+      <div class="offer-card" data-image="assets/products/battery-unit.webp">
+        <h3 class="offer-name">Compact</h3>
+        <p class="offer-desc">5kWh — apartments &amp; small homes</p>
+        <span class="product-price" data-target="2490">$0</span>
+        <a href="#" class="offer-cta">Choose</a>
+      </div>
+      <div class="offer-card featured" data-image="assets/products/battery-unit-home.webp">
+        <span class="badge">Best Value</span>
+        <h3 class="offer-name">Home</h3>
+        <p class="offer-desc">10kWh — full backup coverage</p>
+        <span class="product-price" data-target="4290">$0</span>
+        <a href="#" class="offer-cta">Choose</a>
+      </div>
+      <div class="offer-card" data-image="assets/products/battery-unit-pro.webp">
+        <h3 class="offer-name">Pro</h3>
+        <p class="offer-desc">20kWh — large homes &amp; small business</p>
+        <span class="product-price" data-target="7890">$0</span>
+        <a href="#" class="offer-cta">Choose</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EV CHARGING -->
+
+<section class="product-category" id="ev-charging">
+  <div class="container">
+    <span class="category-tag">03 — EV CHARGING</span>
+
+    <div class="product-hero-card">
+      <img src="assets/products/charger-home.webp" alt="VoltPoint EV charger">
+      <div class="product-overlay-title">VoltPoint</div>
+      <div class="feature-tag tag-1"><span class="tag-dot"></span> 11kW Fast Charge</div>
+      <div class="feature-tag tag-2"><span class="tag-dot"></span> App Controlled</div>
+    </div>
+
+    <div class="product-versions-grid">
+      <div class="offer-card" data-image="assets/products/charger-home.webp">
+        <h3 class="offer-name">Home</h3>
+        <p class="offer-desc">7.4kW wall charger</p>
+        <span class="product-price" data-target="549">$0</span>
+        <a href="#" class="offer-cta">Choose</a>
+      </div>
+      <div class="offer-card featured" data-image="assets/products/charger-home-pro.webp">
+        <span class="badge">Best Value</span>
+        <h3 class="offer-name">Home Pro</h3>
+        <p class="offer-desc">11kW, solar-sync smart charging</p>
+        <span class="product-price" data-target="799">$0</span>
+        <a href="#" class="offer-cta">Choose</a>
+      </div>
+      <div class="offer-card" data-image="assets/products/charger-fleet.webp">
+        <h3 class="offer-name">Fleet</h3>
+        <p class="offer-desc">22kW, multi-vehicle scheduling</p>
+        <span class="product-price" data-target="1290">$0</span>
+        <a href="#" class="offer-cta">Choose</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY -->
+
+<section class="product-category" id="security">
+  <div class="container">
+    <span class="category-tag">04 — SECURITY</span>
+
+    <div class="product-hero-card">
+      <img src="assets/products/basic-security.webp" alt="ShieldCam security camera">
+      <div class="product-overlay-title">ShieldCam</div>
+      <div class="feature-tag tag-1"><span class="tag-dot"></span> 24/7 Monitoring</div>
+      <div class="feature-tag tag-2"><span class="tag-dot"></span> Night Vision 4K</div>
+    </div>
+
+    <div class="product-versions-grid">
+      <div class="offer-card" data-image="assets/products/basic-security.webp">
+        <h3 class="offer-name">Basic</h3>
+        <p class="offer-desc">Single camera, cloud storage</p>
+        <span class="product-price" data-target="129">$0</span>
+        <a href="#" class="offer-cta">Choose</a>
+      </div>
+      <div class="offer-card featured" data-image="assets/products/Homekit-security.webp">
+        <span class="badge">Best Value</span>
+        <h3 class="offer-name">Home Kit</h3>
+        <p class="offer-desc">4 cameras + smart hub</p>
+        <span class="product-price" data-target="449">$0</span>
+        <a href="#" class="offer-cta">Choose</a>
+      </div>
+      <div class="offer-card" data-image="assets/products/Perimeter-security.webp">
+        <h3 class="offer-name">Full Perimeter</h3>
+        <p class="offer-desc">8 cameras, sensors, alarm system</p>
+        <span class="product-price" data-target="899">$0</span>
+        <a href="#" class="offer-cta">Choose</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+
+<div class="container footer-content">
+
+    <div>
+    <h3>SEYVRONA</h3>
+    <p>Next generation renewable energy company.</p>
+
+</div>
+
+<div>
+
+    <h4>Products</h4>
+    <a href="#">Solar</a>
+    <a href="#">Battery</a>
+    <a href="#">EV Charging</a>
+    <a href="#">Security</a>
+
+</div>
+
+<div>
+
+    <h4>Company</h4>
+    <a href="#">About</a>
+    <a href="#">Projects</a>
+    <a href="#">Contact</a>
+
+</div>
+</div>
+</footer>
+
+
+<script type="module" src="scripts/dropdown.js"></script>
+<script src="scripts/products.js"></script>
+
+</body>
+</html>

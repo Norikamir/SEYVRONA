@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEYVRONA - Smart Energy Ecosystem</title>
+    <link rel="stylesheet" href="Css/style.css">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/Icons/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;800&family=Michroma&display=swap" rel="stylesheet">
+    <script src="scripts/contact-modal.js" defer></script>
+    <script src="scripts/navbar-draw.js" defer></script>
+</head>
+<body>
+
+<header>
+  <!-- Svg--draw--lines -->
+  <svg class="navbar-draw" viewBox="0 0 1280 90" preserveAspectRatio="none">
+    <rect x="2" y="2" width="1276" height="86" rx="24" 
+          fill="none" stroke="#2ce5ff" stroke-width="1.2"/>
+</svg>
+  <nav class="navbar">
+    <a href="index.html" class="logo">
+      <span class="logo-img"></span>
+      <span>SEYVRONA</span>
+  </a>
+    <ul class="nav-links">
+      <li class="dropdown">
+        <a href="solutions.html">Solutions</a><span class="arrow"></span>
+        <ul class="dropdown-menu">
+          <li><a href="solutions.html#residential">Residential</a></li>
+          <li><a href="solutions.html#commercial">Commercial</a></li>
+          <li><a href="solutions.html#industrial">Industrial</a></li>
+        </ul>
+      </li>
+      <li><a href="technology.html">Technology</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="applications.html">Applications</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li>
+        <a class="contact-btn contact-btn-mobile">Contact Us</a>
+      </li>
+    </ul>
+    <a class="contact-btn">Contact Us</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+</header>
+<section class="hero" id="home">
+  <div class="container hero-inner">
+    <div class="hero-left">
+      <div class="hero-tag">
+        <span class="tag-pulse"></span>
+        SMART ENERGY ECOSYSTEM
+      </div>
+      <h1>Powering <span>Tomorrow</span>With Intelligent Energy</h1>
+      <p>Integrated solar systems, EV charging, battery storage, security, and smart home automation in one ecosystem.</p>
+      <div class="hero-buttons">
+        <a href="solutions.html" class="btn-primary">Explore Solutions</a>
+        <a href="#" class="btn-secondary">
+          <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          Watch Demo
+        </a>
+      </div>
+      <div class="social-proof">
+        <div class="avatar-stack">
+          <img class="avatar-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Customer">
+          <img class="avatar-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" alt="Customer">
+          <img class="avatar-img" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80" alt="Customer">
+        </div>
+        <div class="social-proof-text">
+          <h4>2,500+</h4>
+          <p>People Trust Us</p>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <h2>2800+</h2>
+          <p>Projects</p>
+        </div>
+        <div class="stat">
+          <h2>98%</h2>
+          <p>Efficiency</p>
+        </div>
+        <div class="stat">
+          <h2>12+</h2>
+          <p>Years</p>
+        </div>
+      </div>
+    </div>
+    <!-- Loading-screen-part -->
+    <div class="hero-right">
+      <canvas id="webgl"></canvas>
+      <div id="loading-screen">
+        <div class="loading-content">
+          <div class="loading-logo">Loading...</div>
+          <div class="progress-track">
+            <div id="progress-bar"></div>
+          </div>
+        </div>
+      </div>
+      <div class="tooltip" id="tooltip">
+        <h4 id="tooltip-title"></h4>
+        <p id="tooltip-text"></p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="ecosystem" id="solutions">
+  <div class="container">
+    <div class="ecosystem-header">
+      <span class="eyebrow">OUR SOLUTIONS</span>
+      <h2>One ecosystem.<br>Endless possibilities.</h2>
+      <p>From generating clean energy to powering your home, charging your vehicle, and keeping your family safe — we connect everything.</p>
+    </div>
+    <div class="orbit-diagram" id="orbitDiagram">
+      <svg class="orbit-lines" id="orbitLines"></svg>
+      <div class="orbit-center">
+        <img src="assets/icons/optimized/image-logo-hero.webp" alt="logo" loading="lazy">
+      </div>
+      <div class="orbit-node" data-label="SOLAR PANELS" data-icon="assets/icons/optimized/image-logo-panels.webp" data-color="#ffcc55" data-desc="High efficiency panels that capture more power."></div>
+      <div class="orbit-node" data-label="EV CHARGING" data-icon="assets/icons/optimized/image-logo-charging.webp" data-color="#a066ff" data-desc="Fast, reliable charging powered by clean energy."></div>
+      <div class="orbit-node" data-label="SECURITY SYSTEMS" data-icon="assets/icons/optimized/image-logo-security.webp" data-color="#ff9955" data-desc="Smart protection for your home and loved ones."></div>
+      <div class="orbit-node" data-label="SMART HOME" data-icon="assets/icons/optimized/image-logo-smartHome.webp" data-color="#ffbb55" data-desc="Control lighting, climate, appliances, and more."></div>
+      <div class="orbit-node" data-label="ENERGY STORAGE" data-icon="assets/icons/optimized/image-logo-energy.webp" data-color="#55ffcc" data-desc="Smart batteries for backup and energy independence."></div>
+    </div>
+  </div>
+</section>
+<section class="projects">
+  <div class="container">
+    <div class="section-title">
+      <h2>Featured Projects</h2>
+      <p>Recent installations and intelligent energy systems.</p>
+    </div>
+    <div class="project-grid">
+      <div class="project-card">
+        <div class="project-image image1"></div>
+        <div class="project-content">
+          <h3>Residential Solar</h3>
+          <p>Complete solar installation with battery storage.</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-image image2"></div>
+        <div class="project-content">
+          <h3>EV Infrastructure</h3>
+          <p>Commercial charging stations.</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-image image3"></div>
+        <div class="project-content">
+          <h3>Smart Security</h3>
+          <p>Modern surveillance ecosystem.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="cta">
+  <div class="container">
+    <h2>Ready to Build the Future?</h2>
+    <p>Let's design your complete smart energy ecosystem.</p>
+    <a href="#" class="btn-primary contact-btn" data-subject="Request a Quote">Get Started</a>
+  </div>
+</section>
+<footer>
+  <div class="container footer-content">
+    <div>
+      <h3>SEYVRONA</h3>
+      <p>Next generation renewable energy company.</p>
+    </div>
+    <div>
+      <h4>Products</h4>
+      <a href="products.html#solar">Solar</a>
+      <a href="products.html#battery">Battery</a>
+      <a href="products.html#ev-charging">EV Charging</a>
+      <a href="products.html#security">Security</a>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <a href="about.html">About</a>
+      <a href="about.html#our-work">Projects</a>
+      
+    </div>
+  </div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/loaders/GLTFLoader.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/meshoptimizer@0.18.1/meshopt_decoder.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js" defer></script>
+<script src="scripts/script.js" defer></script>
+<script type="module" src="scripts/dropdown.js"></script>
+</body>
+</html>
