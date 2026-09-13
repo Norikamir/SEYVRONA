@@ -11,8 +11,11 @@ const preloader = document.getElementById("videoPreloader");
 
 
 const FRAME_COUNT = 342;
-const SPRITE_COLS = 18;
-const SPRITE_ROWS = 19;
+
+const SHEET_COLS = 5;
+const SHEET_ROWS = 9;
+const FRAMES_PER_SHEET = SHEET_COLS * SHEET_ROWS; // 45
+const SHEET_COUNT = Math.ceil(FRAME_COUNT / FRAMES_PER_SHEET); // 8
 
 const OUTRO_FRAME_COUNT = 36;
 const OUTRO_COLS = 6;
@@ -20,7 +23,7 @@ const OUTRO_ROWS = 6;
 
 const TOTAL_FRAMES = FRAME_COUNT + OUTRO_FRAME_COUNT;
 
-const sprite = new Image();
+const sheets = [];
 const outroSprite = new Image();
 let frameW = 0, frameH = 0;
 let outroFrameW = 0, outroFrameH = 0;
@@ -28,15 +31,24 @@ let outroFrameW = 0, outroFrameH = 0;
 
 
 function loadSprite() {
-  return Promise.all([
-    new Promise(resolve => {
-      sprite.onload = () => {
-        frameW = sprite.naturalWidth / SPRITE_COLS;
-        frameH = sprite.naturalHeight / SPRITE_ROWS;
+  const sheetPromises = [];
+  for (let s = 0; s < SHEET_COUNT; s++) {
+    const img = new Image();
+    sheets.push(img);
+    sheetPromises.push(new Promise(resolve => {
+      img.onload = () => {
+        if (!frameW) {
+          frameW = img.naturalWidth / SHEET_COLS;
+          frameH = img.naturalHeight / SHEET_ROWS;
+        }
         resolve();
       };
-      sprite.src = "assets/videos/compressed/spritesheet_q60.jpg";
-    }),
+      img.src = `assets/videos/compressed/spritesheet_q60_part${s}.jpg`;
+    }));
+  }
+
+  return Promise.all([
+    Promise.all(sheetPromises),
     new Promise(resolve => {
       outroSprite.onload = () => {
         outroFrameW = outroSprite.naturalWidth / OUTRO_COLS;
@@ -53,27 +65,41 @@ function drawFrame(index) {
   if (!ctx) return;
 
   const isOutro = index >= FRAME_COUNT;
-  const img = isOutro ? outroSprite : sprite;
-  const cols = isOutro ? OUTRO_COLS : SPRITE_COLS;
-  const fw = isOutro ? outroFrameW : frameW;
-  const fh = isOutro ? outroFrameH : frameH;
-  const localIndex = isOutro ? index - FRAME_COUNT : index;
 
-  if (!fw) return;
+  if (isOutro) {
+    const localIndex = index - FRAME_COUNT;
+    const col = localIndex % OUTRO_COLS;
+    const row = Math.floor(localIndex / OUTRO_COLS);
+    if (!outroFrameW) return;
 
-  const col = localIndex % cols;
-  const row = Math.floor(localIndex / cols);
+    if (canvas.width !== outroFrameW) {
+      canvas.width = outroFrameW;
+      canvas.height = outroFrameH;
+    }
 
-  if (canvas.width !== fw) {
-    canvas.width = fw;
-    canvas.height = fh;
+    ctx.drawImage(
+      outroSprite,
+      col * outroFrameW, row * outroFrameH, outroFrameW, outroFrameH,
+      0, 0, outroFrameW, outroFrameH
+    );
+  } else {
+    const sheetIndex = Math.floor(index / FRAMES_PER_SHEET);
+    const localIndex = index % FRAMES_PER_SHEET;
+    const col = localIndex % SHEET_COLS;
+    const row = Math.floor(localIndex / SHEET_COLS);
+    if (!frameW) return;
+
+    if (canvas.width !== frameW) {
+      canvas.width = frameW;
+      canvas.height = frameH;
+    }
+
+    ctx.drawImage(
+      sheets[sheetIndex],
+      col * frameW, row * frameH, frameW, frameH,
+      0, 0, frameW, frameH
+    );
   }
-
-  ctx.drawImage(
-  img,
-  col * fw, row * fh, fw, fh,
-  0, 0, fw, fh
-);
 
   const frameEl = canvas.closest(".process-video-frame");
   const infoEl = document.querySelector(".process-info");
