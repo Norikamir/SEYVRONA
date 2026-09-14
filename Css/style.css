@@ -1008,7 +1008,7 @@ footer{
 
 
 /* ========================================================== */
-/*                       CONTACT MODAL                        */
+/*                       CONTACT MODAL(FORM)                        */
 /* ========================================================== */
 
 .contact-modal-overlay{
@@ -1039,8 +1039,6 @@ footer{
     radial-gradient(circle at 90% 20%, rgba(160,102,255,.07), transparent 42%),
     radial-gradient(circle at 85% 90%, rgba(85,255,204,.08), transparent 45%),
     rgba(10,16,28,.92);
-  backdrop-filter:blur(24px);
-  -webkit-backdrop-filter:blur(24px);
   border:1px solid rgba(44,229,255,.18);
   border-radius:24px;
   padding:40px;
@@ -1049,10 +1047,12 @@ footer{
   opacity:0;
   transition:transform .4s cubic-bezier(.22,1,.36,1), opacity .4s cubic-bezier(.22,1,.36,1);
   animation:modalGlowPulse 6s ease-in-out infinite;
+  animation-play-state:paused;
 }
 .contact-modal-overlay.active .contact-modal{
   transform:translateY(0) scale(1);
   opacity:1;
+  animation-play-state:running;
 }
 @keyframes modalGlowPulse{
   0%,100%{ box-shadow:0 25px 60px -10px rgba(0,0,0,.6), 0 0 40px rgba(44,229,255,.12), 0 0 75px rgba(85,255,204,.06); }
