@@ -72,16 +72,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const submitBtn = overlay.querySelector("#contactSubmitBtn");
   const statusBox = overlay.querySelector("#contactFormStatus");
 
+
   function openModal(e){
+
     if(e) e.preventDefault();
     overlay.classList.add("active");
     document.body.style.overflow = "hidden";
+    window.dispatchEvent(new Event("contactModalOpen"));
   }
   function closeModal(){
+    
     overlay.classList.remove("active");
     document.body.style.overflow = "";
     statusBox.className = "contact-form-status";
     statusBox.textContent = "";
+    window.dispatchEvent(new Event("contactModalClose"));
 }
 
   window.openContactModal = function(options = {}){

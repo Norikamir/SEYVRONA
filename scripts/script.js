@@ -741,7 +741,12 @@ let canvasVisible = true;
 const heroObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => { canvasVisible = entry.isIntersecting; });
 }, { threshold: 0 });
+
 heroObserver.observe(container);
+
+window.addEventListener("contactModalOpen", () => { canvasVisible = false; });
+window.addEventListener("contactModalClose", () => { canvasVisible = true; });
+
 function animate(){
     requestAnimationFrame(animate);
     if(!canvasVisible) return;  
@@ -750,7 +755,9 @@ function animate(){
     animateCore(t);
     floatObjects(t);
     animateParticles();
-    // Sparks
+
+    // -------Sparks-------//
+    
     sparks.forEach((spark)=>{
         const d = spark.userData;
         d.angle += 0.015 * d.speed;
