@@ -975,6 +975,11 @@ footer{
       padding:14px 20px;
   }
 
+  .contact-modal-overlay{
+    backdrop-filter:blur(4px);
+    -webkit-backdrop-filter:blur(4px);
+  }
+
  
 }
 @media(max-width:400px){
