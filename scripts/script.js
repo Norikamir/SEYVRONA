@@ -809,12 +809,21 @@ window.addEventListener("resize", ()=>{
 
 function adjustCameraForAspect(){
   const aspect = container.clientWidth / container.clientHeight;
-  camera.fov = 46;
-
-  const referenceAspect = 1.6;
-  const distanceScale = Math.max(0.85, Math.min(1.2, referenceAspect / aspect));
-
-  camera.position.set(9.2 * distanceScale, 1.5 * distanceScale, 19 * distanceScale);
+  const screenWidth = window.innerWidth;
+  let baseDistance = 1;
+      if(screenWidth <= 400){
+    camera.fov = 54;
+    baseDistance = 0.95;
+  } else if(screenWidth <= 480){
+    camera.fov = 58;
+    baseDistance = 0.95;
+  } else if(screenWidth <= 900){
+    camera.fov = 47;
+    baseDistance = 0.92;
+  } else {
+    camera.fov = 46;
+  }
+  camera.position.set(9.2 * baseDistance, 1.5 * baseDistance, 19 * baseDistance);
   camera.aspect = aspect;
   camera.updateProjectionMatrix();
 }
