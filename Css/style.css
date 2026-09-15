@@ -1051,17 +1051,34 @@ footer{
   transform:translateY(30px) scale(.96);
   opacity:0;
   transition:transform .4s cubic-bezier(.22,1,.36,1), opacity .4s cubic-bezier(.22,1,.36,1);
-  animation:modalGlowPulse 6s ease-in-out infinite;
+  box-shadow:0 25px 60px -10px rgba(0,0,0,.6), 0 0 40px rgba(44,229,255,.12), 0 0 75px rgba(85,255,204,.06);
+}
+.contact-modal::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  box-shadow:0 25px 60px -10px rgba(0,0,0,.6), 0 0 55px rgba(255,204,85,.10), 0 0 90px rgba(160,102,255,.08);
+  opacity:0;
+  animation:modalGlowFade 6s ease-in-out infinite;
   animation-play-state:paused;
+  will-change:opacity;
 }
 .contact-modal-overlay.active .contact-modal{
   transform:translateY(0) scale(1);
   opacity:1;
+}
+.contact-modal-overlay.active .contact-modal::after{
   animation-play-state:running;
 }
-@keyframes modalGlowPulse{
-  0%,100%{ box-shadow:0 25px 60px -10px rgba(0,0,0,.6), 0 0 40px rgba(44,229,255,.12), 0 0 75px rgba(85,255,204,.06); }
-  50%{ box-shadow:0 25px 60px -10px rgba(0,0,0,.6), 0 0 55px rgba(255,204,85,.10), 0 0 90px rgba(160,102,255,.08); }
+@keyframes modalGlowFade{
+  0%,100%{ opacity:0; }
+  50%{ opacity:1; }
+}
+.navbar.blur-paused{
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
 }
 .contact-modal-close{
   position:absolute;

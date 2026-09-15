@@ -73,13 +73,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const statusBox = overlay.querySelector("#contactFormStatus");
 
 
- function openModal(e){
+function openModal(e){
 
   if(e) e.preventDefault();
   overlay.classList.add("active");
   document.body.style.overflow = "hidden";
   window.dispatchEvent(new Event("contactModalOpen"));
   document.getElementById("webgl")?.style.setProperty("visibility", "hidden");
+  document.querySelector(".navbar")?.classList.add("blur-paused");
 }
 function closeModal(){
   
@@ -89,6 +90,7 @@ function closeModal(){
   statusBox.textContent = "";
   window.dispatchEvent(new Event("contactModalClose"));
   document.getElementById("webgl")?.style.setProperty("visibility", "visible");
+  document.querySelector(".navbar")?.classList.remove("blur-paused");
 }
 
   window.openContactModal = function(options = {}){
