@@ -809,21 +809,12 @@ window.addEventListener("resize", ()=>{
 
 function adjustCameraForAspect(){
   const aspect = container.clientWidth / container.clientHeight;
-  const screenWidth = window.innerWidth;
-  let baseDistance = 1;
-      if(screenWidth <= 400){
-    camera.fov = 60;
-    baseDistance = 0.72;
-  } else if(screenWidth <= 480){
-    camera.fov = 58;
-    baseDistance = 0.85;
-  } else if(screenWidth <= 900){
-    camera.fov = 55;
-    baseDistance = 0.85;
-  } else {
-    camera.fov = 46;
-  }
-  camera.position.set(9.2 * baseDistance, 1.5 * baseDistance, 19 * baseDistance);
+  camera.fov = 46;
+
+  const referenceAspect = 1.6;
+  const distanceScale = Math.max(0.85, Math.min(1.2, referenceAspect / aspect));
+
+  camera.position.set(9.2 * distanceScale, 1.5 * distanceScale, 19 * distanceScale);
   camera.aspect = aspect;
   camera.updateProjectionMatrix();
 }
@@ -966,6 +957,49 @@ canvas.addEventListener('mousemove', (e) => {
 canvas.addEventListener('mouseleave', () => {
   tooltip.style.display = 'none';
 });
+
+function showTooltipAt(clientX, clientY){
+  const rect = canvas.getBoundingClientRect();
+  pointer.x = ((clientX - rect.left) / rect.width) * 2 - 1;
+  pointer.y = -((clientY - rect.top) / rect.height) * 2 + 1;
+  raycaster.setFromCamera(pointer, camera);
+  const intersects = raycaster.intersectObjects(hoverables, true);
+  if (intersects.length > 0) {
+    let obj = intersects[0].object;
+    while (obj && !objectsInfo.has(obj)) obj = obj.parent;
+    const info = obj ? objectsInfo.get(obj) : null;
+    if (info) {
+      tooltipTitle.textContent = info.title;
+      tooltipText.textContent = info.text;
+      tooltip.style.display = 'block';
+
+      const tw = tooltip.offsetWidth;
+      let x = clientX - rect.left;
+      let y = clientY - rect.top;
+
+      if (x - tw/2 < 8) x = tw/2 + 8;
+      if (x + tw/2 > rect.width - 8) x = rect.width - 8 - tw/2;
+      if (y < 90) y = 90;
+
+      tooltip.style.left = x + 'px';
+      tooltip.style.top = y + 'px';
+      return true;
+    }
+  }
+  tooltip.style.display = 'none';
+  return false;
+}
+
+canvas.addEventListener('touchstart', (e) => {
+  if (!e.touches[0]) return;
+  showTooltipAt(e.touches[0].clientX, e.touches[0].clientY);
+}, { passive: true });
+
+document.addEventListener('touchstart', (e) => {
+  if (!canvas.contains(e.target)) {
+    tooltip.style.display = 'none';
+  }
+}, { passive: true });
 };
 
 // ==========================================================

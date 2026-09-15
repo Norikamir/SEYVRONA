@@ -735,7 +735,7 @@ footer{
 }
 .loading-content{
   position:absolute;
-  top:70%;
+  top:50%;
   left:50%;
   transform:translate(-50%, -50%);
   display:flex;
@@ -960,7 +960,7 @@ footer{
 @media(max-width:768px){
 
   .hero h1{ font-size:32px; }
-  .hero-right{ height:380px; }
+  .hero-right{ height:460px; }
   .section-title h2{ font-size:32px; }
   .cta h2{ font-size:32px; }
   .cards{ grid-template-columns:1fr; }
@@ -1008,7 +1008,7 @@ footer{
   .stat h2{ font-size:18px; }
   .stat p{ font-size:10px; }
   .hero h1{ font-size:26px; }
-  .hero-right{ height:260px; }
+  .hero-right{ height:360px; }
 }
 
 
