@@ -27,11 +27,15 @@ function syncNavbarDraw(){
 
   rect.style.strokeDasharray = perimeter;
   rect.style.strokeDashoffset = perimeter;
-
-  rect.style.animation = 'none';
-  rect.offsetHeight; // форс reflow
-  rect.style.animation = '';
 }
 
 document.addEventListener('DOMContentLoaded', syncNavbarDraw);
-window.addEventListener('resize', syncNavbarDraw);
+let navbarDrawQueued = false;
+window.addEventListener('resize', () => {
+  if (navbarDrawQueued) return;
+  navbarDrawQueued = true;
+  requestAnimationFrame(() => {
+    navbarDrawQueued = false;
+    syncNavbarDraw();
+  });
+});

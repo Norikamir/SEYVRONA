@@ -1,9 +1,6 @@
-if ("scrollRestoration" in history) {
-  history.scrollRestoration = "manual";
-}
-window.scrollTo(0, 0);
-
 gsap.registerPlugin(ScrollTrigger);
+
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /**
  * Scenario panels: shutter strips open on scroll, then content fades in.
@@ -153,6 +150,30 @@ function initScenarioAnimations() {
     }
   });
 
+  const dotsRail = document.querySelector(".scenario-dots");
+  if (dotsRail && stack) {
+    triggers.push(ScrollTrigger.create({
+      trigger: stack,
+      start: "top 75%",
+      end: "bottom 25%",
+      toggleClass: { targets: dotsRail, className: "is-visible" }
+    }));
+  }
+
+  // L2: the "scroll down" arrow moves to the next scenario
+  document.querySelectorAll(".scroll-down-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const panel = btn.closest(".scenario-panel");
+      let next = panel ? panel.nextElementSibling : null;
+      while (next && !next.classList.contains("scenario-panel")) next = next.nextElementSibling;
+      if (!next) return;
+      window.scrollTo({
+        top: next.getBoundingClientRect().top + window.scrollY,
+        behavior: prefersReducedMotion ? "auto" : "smooth"
+      });
+    });
+  });
+
   if (phoneWrap && stack) {
     const visibilityTrigger = ScrollTrigger.create({
       trigger: stack,
@@ -166,10 +187,6 @@ function initScenarioAnimations() {
     });
     triggers.push(visibilityTrigger);
   }
-
-  window.addEventListener("beforeunload", () => {
-    triggers.forEach((st) => st.kill());
-  });
 }
 
 if (document.readyState === "loading") {
@@ -409,14 +426,6 @@ function setupNetworkScene(host) {
 
     onRefresh: (self) => { self.isActive ? start() : stop(); }
   });
-
-  window.addEventListener("beforeunload", () => {
-    stop();
-    host.removeEventListener("mousemove", onMouseMove);
-    host.removeEventListener("mouseleave", onMouseLeave);
-    host.removeEventListener("touchmove", onTouchMove);
-    host.removeEventListener("touchend", onMouseLeave);
-  });
 }
 
 function initNetworkScenes() {
@@ -436,10 +445,37 @@ function syncPhoneLayout() {
 }
 
 syncPhoneLayout();
-window.addEventListener("resize", syncPhoneLayout);
+let phoneLayoutQueued = false;
+window.addEventListener("resize", () => {
+  if (phoneLayoutQueued) return;
+  phoneLayoutQueued = true;
+  requestAnimationFrame(() => {
+    phoneLayoutQueued = false;
+    syncPhoneLayout();
+  });
+});
 
 
 window.addEventListener("load", () => {
   syncPhoneLayout();
   ScrollTrigger.refresh();
 });
+
+
+// Re-measure triggers after a rotation / width change. ScrollTrigger can skip a
+// second resize event on phones, which leaves trigger positions from the old layout.
+if (window.ScrollTrigger) {
+  let lastWidth = window.innerWidth;
+  let resizeTimer;
+  const remeasure = () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (window.innerWidth !== lastWidth) {
+        lastWidth = window.innerWidth;
+        ScrollTrigger.refresh();
+      }
+    }, 300);
+  };
+  window.addEventListener("resize", remeasure);
+  window.addEventListener("orientationchange", remeasure);
+}

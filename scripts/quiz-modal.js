@@ -3,16 +3,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.createElement("div");
   overlay.className = "contact-modal-overlay quiz-modal-overlay";
   overlay.innerHTML = `
-    <div class="contact-modal quiz-modal" role="dialog" aria-modal="true" aria-labelledby="quizModalTitle">
+    <div class="contact-modal quiz-modal" role="dialog" aria-modal="true" aria-labelledby="quizModalTitle" tabindex="-1">
       <button type="button" class="contact-modal-close quiz-close" aria-label="Close">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
           <path d="M18 6L6 18M6 6l12 12"/>
         </svg>
       </button>
       <span class="contact-modal-tag">FIND YOUR FIT</span>
       <h3 id="quizModalTitle">What solar setup fits <span>you</span>?</h3>
 
-      <div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar"></div></div>
+      <div class="quiz-progress" aria-hidden="true"><div class="quiz-progress-bar" id="quizProgressBar"></div></div>
 
       <div class="quiz-step" data-step="0">
         <p class="quiz-question">What's your main goal?</p>
@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
   `;
   document.body.appendChild(overlay);
 
+  const dialog = overlay.querySelector(".quiz-modal");
   const closeBtn = overlay.querySelector(".quiz-close");
   const steps = overlay.querySelectorAll(".quiz-step");
   const progressBar = overlay.querySelector("#quizProgressBar");
@@ -75,15 +76,23 @@ document.addEventListener("DOMContentLoaded", () => {
     showStep(0);
     overlay.classList.add("active");
     document.body.style.overflow = "hidden";
+    if (window.SeyvronaDialog) window.SeyvronaDialog.open(overlay, dialog, overlay.querySelector('.quiz-step:not([hidden]) .quiz-option'));
   }
   function closeQuiz(){
+    if (!overlay.classList.contains("active")) return;
     overlay.classList.remove("active");
     document.body.style.overflow = "";
+    if (window.SeyvronaDialog) window.SeyvronaDialog.close(overlay);
   }
 
   function showStep(index){
     steps.forEach(step => step.hidden = Number(step.dataset.step) !== index);
     progressBar.style.width = ((index) / (steps.length - 1) * 100) + "%";
+    // keep keyboard focus inside the step that is now visible
+    if (overlay.classList.contains("active")) {
+      const next = overlay.querySelector('.quiz-step:not([hidden]) button');
+      if (next) next.focus({ preventScroll: true });
+    }
   }
 
   function computePlan(){

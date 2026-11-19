@@ -3,11 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - SEYVRONA</title>
+    <meta name="description" content="Engineering a smarter, cleaner way to live: the team, the work and the numbers behind the SEYVRONA energy ecosystem.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="SEYVRONA">
+    <meta property="og:title" content="About Us — SEYVRONA">
+    <meta property="og:description" content="Engineering a smarter, cleaner way to live: the team, the work and the numbers behind the SEYVRONA energy ecosystem.">
+    <meta name="twitter:card" content="summary">
+    <title>About Us — SEYVRONA</title>
+    <link rel="stylesheet" href="Css/style.css">
     <link rel="stylesheet" href="Css/about.css">
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/Icons/favicon.png">
+    <link rel="icon" type="image/png" sizes="180x180" href="assets/Icons/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;800&family=Michroma&display=swap" rel="stylesheet">
     <script src="scripts/contact-modal.js" defer></script>
     <script src="scripts/navbar-draw.js" defer></script>
@@ -25,7 +33,7 @@
         <span class="logo-img"></span>
         <span>SEYVRONA</span>
   </a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="primaryNav">
       <li class="dropdown">
         <a href="solutions.html">Solutions</a><span class="arrow"></span>
         <ul class="dropdown-menu">
@@ -39,11 +47,11 @@
       <li><a href="applications.html">Applications</a></li>
       <li><a href="about.html" class="active">About Us</a></li>
       <li>
-        <a href="#" class="contact-btn contact-btn-mobile">Contact Us</a>
+        <a href="#contact" class="contact-btn contact-btn-mobile" role="button">Contact Us</a>
       </li>
     </ul>
-    <a class="contact-btn">Contact Us</a>
-    <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+    <a href="#contact" class="contact-btn" role="button">Contact Us</a>
+    <button type="button" class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="primaryNav">
       <span></span>
       <span></span>
       <span></span>
@@ -104,7 +112,7 @@
   </div>
 
   <div class="work-panel">
-    <div class="work-panel-image" style="background-image:url('../assets/solar-engineer.png')"></div>
+    <div class="work-panel-image" style="background-image:url('assets/solar-engineer.webp')"></div>
     <div class="work-marquee">
       <div class="marquee-track">
         <span>SOLAR ENGINEERING</span><span class="dot">&#9679;</span>
@@ -122,7 +130,7 @@
   </div>
 
   <div class="work-panel">
-    <div class="work-panel-image" style="background-image:url('../assets/our_office.png')"></div>
+    <div class="work-panel-image" style="background-image:url('assets/our_office.webp')"></div>
     <div class="work-marquee">
   <div class="marquee-track">
     <span>INSIDE SEYVRONA</span><span class="dot">&#9679;</span>
@@ -140,7 +148,7 @@
   </div>
 
   <div class="work-panel">
-    <div class="work-panel-image" style="background-image:url('../assets/new-york-solar.png')"></div>
+    <div class="work-panel-image" style="background-image:url('assets/new-york-solar.webp')"></div>
     <div class="work-marquee">
       <div class="marquee-track">
         <span>EVEN SKYLINES GO SOLAR</span><span class="dot">&#9679;</span>
@@ -171,9 +179,9 @@
         <span class="quote-mark">"</span>
         <p class="testimonial-text">Our energy bill dropped by 70% in the first year. The installation team was fast, clean, and explained everything clearly.</p>
         <div class="testimonial-author">
-          <img class="avatar-img" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&auto=format&fit=crop&q=80" alt="Client">
+          <img class="avatar-img" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&auto=format&fit=crop&q=80" alt="" width="42" height="42" loading="lazy">
           <div>
-            <h4>Anna K.</h4>
+            <h4 aria-level="3">Anna K.</h4>
             <p>Residential Client</p>
           </div>
         </div>
@@ -182,9 +190,9 @@
         <span class="quote-mark">"</span>
         <p class="testimonial-text">We switched our entire delivery fleet to Seyvrona's charging network. Uptime has been flawless and support is always fast.</p>
         <div class="testimonial-author">
-          <img class="avatar-img" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80" alt="Client">
+          <img class="avatar-img" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80" alt="" width="42" height="42" loading="lazy">
           <div>
-            <h4>David M.</h4>
+            <h4 aria-level="3">David M.</h4>
             <p>Fleet Operations Manager</p>
           </div>
         </div>
@@ -193,9 +201,9 @@
         <span class="quote-mark">"</span>
         <p class="testimonial-text">From design to commissioning, the whole process felt effortless. The app makes monitoring our storage system genuinely enjoyable.</p>
         <div class="testimonial-author">
-          <img class="avatar-img" src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?w=100&auto=format&fit=crop&q=80" alt="Client">
+          <img class="avatar-img" src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?w=100&auto=format&fit=crop&q=80" alt="" width="42" height="42" loading="lazy">
           <div>
-            <h4>Lena S.</h4>
+            <h4 aria-level="3">Lena S.</h4>
             <p>Commercial Client</p>
           </div>
         </div>
@@ -214,22 +222,22 @@
     </div>
     <div class="team-grid">
       <div class="card team-card">
-        <img class="team-photo" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&auto=format&fit=crop&q=80" alt="CEO">
+        <img class="team-photo" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&auto=format&fit=crop&q=80" alt="Victor DeSimone, Founder and CEO" width="300" height="300" loading="lazy">
         <h3>Victor DeSimone</h3>
         <span class="team-role">Founder &amp; CEO</span>
       </div>
       <div class="card team-card">
-        <img class="team-photo" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=300&auto=format&fit=crop&q=80" alt="CTO">
+        <img class="team-photo" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=300&auto=format&fit=crop&q=80" alt="Amanda Myers, Chief Technology Officer" width="300" height="300" loading="lazy">
         <h3>Amanda Myers</h3>
         <span class="team-role">Chief Technology Officer</span>
       </div>
       <div class="card team-card">
-        <img class="team-photo" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&auto=format&fit=crop&q=80" alt="Head of Engineering">
+        <img class="team-photo" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&auto=format&fit=crop&q=80" alt="David Harper, Head of Engineering" width="300" height="300" loading="lazy">
         <h3>David Harper</h3>
         <span class="team-role">Head of Engineering</span>
       </div>
       <div class="card team-card">
-        <img class="team-photo" src="assets/IT-specialist.jpeg" alt="IT-Specialist">
+        <img class="team-photo" src="assets/IT-specialist.webp" alt="Norik Mirzikyan, IT Systems Engineer" width="400" height="400" loading="lazy">
         <h3>Norik Mirzikyan</h3>
         <span class="team-role">IT Systems Engineer</span>
       </div>
@@ -259,35 +267,35 @@
   <div class="container">
     <h2>Ready to Build the Future?</h2>
     <p>Let's design your complete smart energy ecosystem.</p>
-    <a href="#" class="btn-primary contact-btn" data-subject="Request a Quote">Get Started</a>
+    <a href="#contact" class="btn-primary contact-btn" role="button" data-subject="Request a Quote">Get Started</a>
   </div>
 </section>
 
 <footer>
   <div class="container footer-content">
     <div>
-      <h3>SEYVRONA</h3>
+      <h3 aria-level="2">SEYVRONA</h3>
       <p>Next generation renewable energy company.</p>
     </div>
     <div>
-      <h4>Products</h4>
+      <h4 aria-level="3">Products</h4>
       <a href="products.html#solar">Solar</a>
       <a href="products.html#battery">Battery</a>
       <a href="products.html#ev-charging">EV Charging</a>
       <a href="products.html#security">Security</a>
     </div>
     <div>
-      <h4>Company</h4>
+      <h4 aria-level="3">Company</h4>
       <a href="about.html">About</a>
-      <a href="projects.html">Projects</a>
-      <a href="#">Contact</a>
+      <a href="applications.html">Applications</a>
+      <a href="#contact" role="button" data-contact-open>Contact</a>
     </div>
   </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="scripts/about.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer crossorigin="anonymous"></script>
+<script src="scripts/about.js" defer></script>
 <script type="module" src="scripts/dropdown.js"></script>
 </body>
 </html>

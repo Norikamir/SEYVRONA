@@ -53,6 +53,13 @@
     flex-direction:column;
     gap:12px;
     z-index:40;
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .4s ease, visibility .4s ease;
+}
+.scenario-dots.is-visible{
+    opacity:1;
+    visibility:visible;
 }
 .scenario-dots .dot{
     width:6px;
@@ -79,11 +86,13 @@
 }
 .scenario-wrap-last{
     height:100vh;
+    height:100svh;
 }
 .scenario-panel{
     position:sticky;
     top:0;
     height:100vh;
+    height:100svh;
     width:100%;
     overflow:hidden;
     display:flex;
@@ -346,6 +355,7 @@
 }
 .scenario-phone-wrap .phone-frame{
      width:min(clamp(220px, 21vw, 300px), calc((100vh - var(--header-h, 140px) - 40px) * 9 / 18.5));
+     width:min(clamp(220px, 21vw, 300px), calc((100svh - var(--header-h, 140px) - 40px) * 9 / 18.5));
 }
 .scenario-phone-wrap.is-visible{
     opacity:1;
@@ -427,6 +437,7 @@
 @media(max-height:760px){
     .scenario-phone-wrap .phone-frame{
          width:min(clamp(200px, 19vw, 260px), calc((100vh - var(--header-h, 140px) - 40px) * 9 / 18.5));
+         width:min(clamp(200px, 19vw, 260px), calc((100svh - var(--header-h, 140px) - 40px) * 9 / 18.5));
     }
 }
 .row-icon{
@@ -575,4 +586,11 @@
         color:var(--app-text-dim);
         font-size:9px;
     }
+}
+
+/* Page uses ScrollTrigger: native smooth scrolling must be off, otherwise
+   ScrollTrigger's scroll reset during refresh() is animated and trigger
+   positions are measured wrongly after a resize / rotation. */
+html{
+  scroll-behavior: auto;
 }

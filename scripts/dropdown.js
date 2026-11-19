@@ -9,10 +9,21 @@ const dropdowns = document.querySelectorAll(".dropdown");
 //      --  Open--close---Burger--menu
 //    ================================
 
+function setMenuOpen(open) {
+    if (!menuToggle || !navLinks) return;
+    menuToggle.classList.toggle("active", open);
+    navLinks.classList.toggle("open", open);
+    menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    menuToggle.setAttribute("aria-label", open ? "Close menu" : "Menu");
+}
+
+function closeDropdowns() {
+    dropdowns.forEach(drop => setDropdownOpen(drop, false));
+}
+
 if (menuToggle && navLinks) {
     menuToggle.addEventListener("click", () => {
-        menuToggle.classList.toggle("active");
-        navLinks.classList.toggle("open");
+        setMenuOpen(!navLinks.classList.contains("open"));
     });
 
     navLinks.querySelectorAll("a").forEach(link => {
@@ -21,17 +32,26 @@ if (menuToggle && navLinks) {
             if (link.parentElement.classList.contains("dropdown")) {
                 return;
             }
-            menuToggle.classList.remove("active");
-            navLinks.classList.remove("open");
+            setMenuOpen(false);
         });
     });
 }
 
 // 2. Логика Dropdown (Solutions и др.)
 
+function setDropdownOpen(dropdown, open) {
+    const link = dropdown.querySelector("a");
+    const menu = dropdown.querySelector(".dropdown-menu");
+    dropdown.classList.toggle("active", open);
+    if (menu) menu.classList.toggle("active", open);
+    if (link) link.setAttribute("aria-expanded", open ? "true" : "false");
+}
+
 dropdowns.forEach(dropdown => {
     const link = dropdown.querySelector("a");
     const menu = dropdown.querySelector(".dropdown-menu");
+
+    if (link && menu) link.setAttribute("aria-expanded", "false");
 
     let hideTimeout;
 
@@ -39,22 +59,32 @@ dropdowns.forEach(dropdown => {
     dropdown.addEventListener("mouseenter", () => {
         if (isMobile()) return;
         clearTimeout(hideTimeout);
-        if (menu) menu.classList.add("active");
-        dropdown.classList.add("active");
+        setDropdownOpen(dropdown, true);
     });
 
     dropdown.addEventListener("mouseleave", () => {
         if (isMobile()) return;
-        hideTimeout = setTimeout(() => {
-            if (menu) menu.classList.remove("active");
-            dropdown.classList.remove("active");
-        }, 150);
+        if (dropdown.contains(document.activeElement)) return; // keyboard user is inside
+        hideTimeout = setTimeout(() => setDropdownOpen(dropdown, false), 150);
+    });
+
+    // Desktop keyboard: the submenu opens while focus is inside it
+    dropdown.addEventListener("focusin", () => {
+        if (isMobile()) return;
+        clearTimeout(hideTimeout);
+        setDropdownOpen(dropdown, true);
+    });
+
+    dropdown.addEventListener("focusout", (e) => {
+        if (isMobile()) return;
+        if (e.relatedTarget && dropdown.contains(e.relatedTarget)) return;
+        setDropdownOpen(dropdown, false);
     });
 
     // Mobile click (раскрытие по клику на Solutions)
 
     if (link && menu) {
-        
+
         link.addEventListener("click", (e) => {
             if (!isMobile()) return;
 
@@ -65,23 +95,17 @@ dropdowns.forEach(dropdown => {
 
             if (isOpen) {
                 // Уже открыто — закрываем обратно
-                dropdown.classList.remove("active");
-                menu.classList.remove("active");
+                setDropdownOpen(dropdown, false);
                 return;
             }
 
             // Закрываем другие открытые подменю на мобайле
             dropdowns.forEach(other => {
-                if (other !== dropdown) {
-                    other.classList.remove("active");
-                    const otherMenu = other.querySelector(".dropdown-menu");
-                    if (otherMenu) otherMenu.classList.remove("active");
-                }
+                if (other !== dropdown) setDropdownOpen(other, false);
             });
 
             // Открываем текущее
-            dropdown.classList.add("active");
-            menu.classList.add("active");
+            setDropdownOpen(dropdown, true);
         });
     }
 });
@@ -91,15 +115,25 @@ dropdowns.forEach(dropdown => {
 document.addEventListener("click", (e) => {
     if (isMobile() && navLinks && navLinks.classList.contains("open")) {
         if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
-            menuToggle.classList.remove("active");
-            navLinks.classList.remove("open");
+            setMenuOpen(false);
 
             // Сбрасываем дропдауны заодно, иначе состояние "зависает"
-            dropdowns.forEach(drop => {
-                drop.classList.remove("active");
-                const m = drop.querySelector(".dropdown-menu");
-                if (m) m.classList.remove("active");
-            });
+            closeDropdowns();
         }
+    }
+});
+
+// Escape closes the submenu / the mobile menu and returns focus
+document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    const openDrop = [...dropdowns].find(d => d.classList.contains("active"));
+    if (openDrop) {
+        setDropdownOpen(openDrop, false);
+        if (openDrop.contains(document.activeElement)) openDrop.querySelector("a").focus();
+        return;
+    }
+    if (menuToggle && navLinks && navLinks.classList.contains("open")) {
+        setMenuOpen(false);
+        menuToggle.focus();
     }
 });

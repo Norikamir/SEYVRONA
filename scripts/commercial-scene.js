@@ -44,17 +44,21 @@ function updateCameraForAspect() {
 
   camera.lookAt(0, 2.2, 0);
   camera.updateProjectionMatrix();
-
-  camera.updateProjectionMatrix();
 }
 
 updateCameraForAspect();
 
-const renderer = new THREE.WebGLRenderer({
-  canvas: canvasCommercial,
-  alpha: true,
-  antialias: true
-});
+let renderer;
+try {
+  renderer = new THREE.WebGLRenderer({
+    canvas: canvasCommercial,
+    alpha: true,
+    antialias: true
+  });
+} catch (err) {
+  console.warn("WebGL is not available:", err && err.message);
+}
+if (renderer) {
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.setSize(canvasCommercial.clientWidth, canvasCommercial.clientHeight);
 
@@ -207,7 +211,6 @@ function loadBuilding(path, position, scaleStart, rotationY, labelName) {
         group.add(model);
 
         const worldBox = new THREE.Box3().setFromObject(group);
-        console.log(labelName + " WORLD bounds:", "min:", worldBox.min, "max:", worldBox.max);
 
         resolve({ group, box: worldBox, label: labelName });
       },
@@ -225,11 +228,27 @@ function loadBuilding(path, position, scaleStart, rotationY, labelName) {
       // =====================================================
 
 
-const officePromise = loadBuilding("assets/office.glb", new THREE.Vector3(-6, 0, -1), 6, 0, "office.glb");
+// The buildings (20.8 MB) are requested only when the section comes within
+// ~1.5 screens, instead of competing with the top of the page on load.
+function whenNear(el) {
+  return new Promise((resolve) => {
+    if (!("IntersectionObserver" in window)) return resolve();
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) {
+        io.disconnect();
+        resolve();
+      }
+    }, { rootMargin: "150% 0px" });
+    io.observe(el);
+  });
+}
+const nearScene = whenNear(canvasCommercial);
 
-const warehousePromise = loadBuilding("assets/warehouse.glb", new THREE.Vector3(6, 0, -1), 6, 0, "warehouse.glb");
+const officePromise = nearScene.then(() => loadBuilding("assets/office.glb", new THREE.Vector3(-6, 0, -1), 6, 0, "office.glb"));
 
-const depotPromise = loadBuilding("assets/depot.glb", new THREE.Vector3(0, 0, 6), 5, 0, "depot.glb");
+const warehousePromise = nearScene.then(() => loadBuilding("assets/warehouse.glb", new THREE.Vector3(6, 0, -1), 6, 0, "warehouse.glb"));
+
+const depotPromise = nearScene.then(() => loadBuilding("assets/depot.glb", new THREE.Vector3(0, 0, 6), 5, 0, "depot.glb"));
 
 // ---------------- CABLES: ЯДРО -> ЗДАНИЯ ----------------
 // Координаты ориентировочные — подгони после того, как модели
@@ -308,10 +327,23 @@ function updateLabels() {
 
 // ---------------- RESIZE ----------------
 
+let resizeQueued = false;
+let lastW = canvasCommercial.clientWidth;
+let lastH = canvasCommercial.clientHeight;
 window.addEventListener("resize", () => {
-  updateCameraForAspect();
-  renderer.setSize(canvasCommercial.clientWidth, canvasCommercial.clientHeight);
-  canvasRect = canvasCommercial.getBoundingClientRect();
+  if (resizeQueued) return;
+  resizeQueued = true;
+  requestAnimationFrame(() => {
+    resizeQueued = false;
+    canvasRect = canvasCommercial.getBoundingClientRect();
+    const w = canvasCommercial.clientWidth;
+    const h = canvasCommercial.clientHeight;
+    if (w === lastW && h === lastH) return;
+    lastW = w;
+    lastH = h;
+    updateCameraForAspect();
+    renderer.setSize(w, h);
+  });
 });
 
 // ===================================================
@@ -321,22 +353,39 @@ window.addEventListener("resize", () => {
 const clock = new THREE.Clock();
 
 let isSceneVisible = true;
+let modalOpen = false;
+let rafId = 0;
+
+function shouldRender() {
+  return isSceneVisible && !modalOpen && !document.hidden;
+}
+function startLoop() {
+  if (!rafId && shouldRender()) rafId = requestAnimationFrame(animate);
+}
 
 const sceneVisibilityObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     isSceneVisible = entry.isIntersecting;
   });
+  if (isSceneVisible) canvasRect = canvasCommercial.getBoundingClientRect();
+  startLoop();
 }, { threshold: 0.05 });
 
 sceneVisibilityObserver.observe(canvasCommercial);
+window.addEventListener("contactModalOpen", () => { modalOpen = true; });
+window.addEventListener("contactModalClose", () => { modalOpen = false; startLoop(); });
+document.addEventListener("visibilitychange", startLoop);
 
-
+// L15: the cable pulse repeats every 1/0.6 s, so time is wrapped by a
+// whole number of periods (100 s) — same picture, no float drift.
+const PULSE_WRAP = 100;
 
 function animate() {
-  requestAnimationFrame(animate);
-  if (!isSceneVisible) return;
+  if (!shouldRender()) { rafId = 0; return; }
+  rafId = requestAnimationFrame(animate);
 
   const t = clock.getElapsedTime();
+  const pulseTime = t % PULSE_WRAP;
 
   core.children.forEach((child, i) => {
     if (child.geometry && child.geometry.type === "TorusGeometry") {
@@ -346,7 +395,7 @@ function animate() {
   coreGlow.material.opacity = 0.4 + Math.sin(t * 2) * 0.15;
 
   fibers.forEach((mat) => {
-    mat.uniforms.uTime.value = t;
+    mat.uniforms.uTime.value = pulseTime;
   });
 
   updateLabels();
@@ -354,6 +403,8 @@ function animate() {
   renderer.render(scene, camera);
 }
 
-animate();
+startLoop();
+
+}
 
 }

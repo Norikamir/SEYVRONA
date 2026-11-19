@@ -80,6 +80,7 @@ button:disabled,
   cursor: not-allowed;
 }
 
+.solutions-heading h1,
 .solutions-heading h2{
   font-family: 'Michroma', sans-serif;
   font-size: 40px;
@@ -87,6 +88,7 @@ button:disabled,
   margin: 15px 0 20px;
 }
 
+.solutions-heading h1 span,
 .solutions-heading h2 span{
   background: linear-gradient(90deg,#1ef6ff,#18b5ff,#66ffcb);
   -webkit-background-clip: text;
@@ -223,6 +225,7 @@ button:disabled,
     padding: 0 20px;
   }
 
+  .solutions-heading h1,
   .solutions-heading h2{
     font-size: 32px;
   }
@@ -241,7 +244,7 @@ button:disabled,
     border-radius: 16px;
   }
   .feature-tag{
-    font-size: 11px;
+    font-size: 12px;
     padding: 6px 12px;
     gap: 6px;
   }
@@ -260,6 +263,7 @@ button:disabled,
     margin-top: 30px;
   }
 
+  .solutions-heading h1,
   .solutions-heading h2{
     font-size: 26px;
     line-height: 1.25;
@@ -278,7 +282,7 @@ button:disabled,
   }
 
   .badge{
-    font-size: 11px;
+    font-size: 12px;
     padding: 5px 14px;
   }
 
@@ -291,7 +295,7 @@ button:disabled,
   }
 
   .feature-tag{
-    font-size: 10px;
+    font-size: 12px;
     padding: 5px 10px;
   }
 
@@ -300,6 +304,7 @@ button:disabled,
     display: none;
   }
 
+  .solutions-heading h1,
   .solutions-heading h2{
     font-size: 22px;
   }
@@ -476,7 +481,7 @@ button:disabled,
 }
 
 .mini-label{
-  font-size: 11px;
+  font-size: 12px;
   color: #9ca7ba;
 }
 
@@ -486,7 +491,7 @@ button:disabled,
 }
 
 .mini-value small{
-  font-size: 11px;
+  font-size: 12px;
   color: #9ca7ba;
   font-weight: 400;
 }
@@ -741,7 +746,7 @@ button:disabled,
   }
   .building-label{
     padding: 6px 10px;
-    font-size: 11px;
+    font-size: 12px;
   }
   .label-value{
     font-size: 12px;
@@ -754,10 +759,10 @@ button:disabled,
   }
   .building-label{
     padding: 5px 8px;
-    font-size: 10px;
+    font-size: 12px;
   }
   .label-value{
-    font-size: 11px;
+    font-size: 12px;
   }
   .commercial-stats-card{
     padding: 20px;

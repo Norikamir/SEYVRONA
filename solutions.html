@@ -3,18 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solutions-SEYVRONA</title>
+    <meta name="description" content="Residential, commercial and industrial energy solutions: backup power, smart automation and intelligent energy systems that reduce costs and ensure uptime.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="SEYVRONA">
+    <meta property="og:title" content="Solutions — SEYVRONA">
+    <meta property="og:description" content="Residential, commercial and industrial energy solutions: backup power, smart automation and intelligent energy systems that reduce costs and ensure uptime.">
+    <meta name="twitter:card" content="summary">
+    <title>Solutions — SEYVRONA</title>
     <link rel="stylesheet" href="Css/style.css">
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/Icons/favicon.png">
+    <link rel="icon" type="image/png" sizes="180x180" href="assets/Icons/favicon.png">
     <link rel="stylesheet" href="Css/solutions.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/loaders/GLTFLoader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/meshoptimizer@0.18.1/meshopt_decoder.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;800&family=Michroma&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js" defer crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/meshoptimizer@0.18.1/meshopt_decoder.js" defer crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js" defer crossorigin="anonymous"></script>
     <script src="scripts/contact-modal.js" defer></script>
     <script src="scripts/navbar-draw.js" defer></script>
     <script src="scripts/quiz-modal.js" defer></script>
@@ -36,10 +45,10 @@
       <span>SEYVRONA</span>
   </a>
 
-<ul class="nav-links">
+<ul class="nav-links" id="primaryNav">
 
   <li class="dropdown">
-    <a href="#">Solutions</a><span class="arrow"></span>
+    <a href="solutions.html" aria-current="page">Solutions</a><span class="arrow"></span>
     <ul class="dropdown-menu">
     <li><a href="#residential">Residential</a></li>
     <li><a href="#commercial">Commercial</a></li>
@@ -52,13 +61,13 @@
     <li><a href="about.html">About Us</a></li>
 
     <li>
-      <a class="contact-btn contact-btn-mobile">Contact Us</a>
+      <a href="#contact" class="contact-btn contact-btn-mobile" role="button">Contact Us</a>
     </li>
 </ul>
 
-<a class="contact-btn">Contact Us</a>
+<a href="#contact" class="contact-btn" role="button">Contact Us</a>
 
-<button class="menu-toggle" id="menuToggle" aria-label="Menu">
+<button type="button" class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="primaryNav">
     <span></span>
     <span></span>
     <span></span>
@@ -93,7 +102,7 @@
 
       <div class="solutions-heading">
         <span class="hero-tag">RESIDENTIAL PLANS</span>
-        <h2>Independence for <span>Your Home</span></h2>
+        <h1>Independence for <span>Your Home</span></h1>
         <p>Full backup power, smart automation, and zero interruption — even when the grid goes down.</p>
       </div>
     </div>
@@ -106,19 +115,19 @@
       <div class="offers-grid">
 
         <div class="offer-card">
-          <h3 class="offer-name">Starter</h3>
+          <h3 class="offer-name" aria-level="2">Starter</h3>
           <p class="offer-desc">Solar essentials for lower bills</p>
           <ul class="offer-features">
             <li>Solar panel installation</li>
             <li>Basic app monitoring</li>
             <li>Standard support</li>
           </ul>
-          <a class="offer-cta contact-btn" data-subject="Request a Quote">Get Started</a>
+          <a href="#contact" class="offer-cta contact-btn" role="button" data-subject="Request a Quote">Get Started</a>
         </div>
 
         <div class="offer-card featured">
           <span class="badge">Most Popular</span>
-          <h3 class="offer-name">Independence</h3>
+          <h3 class="offer-name" aria-level="2">Independence</h3>
           <p class="offer-desc">Full backup power & smart control</p>
           <ul class="offer-features">
             <li>Everything in Starter</li>
@@ -126,11 +135,11 @@
             <li>0ms automatic backup power</li>
             <li>Smart EV charging</li>
           </ul>
-          <a style="cursor: pointer;" class="offer-cta quote-quiz-btn">Calculate My Price</a>
+          <a href="#price-quiz" style="cursor: pointer;" class="offer-cta quote-quiz-btn" role="button">Calculate My Price</a>
         </div>
 
         <div class="offer-card">
-          <h3 class="offer-name">Full Control</h3>
+          <h3 class="offer-name" aria-level="2">Full Control</h3>
           <p class="offer-desc">Complete smart home ecosystem</p>
           <ul class="offer-features">
             <li>Everything in Independence</li>
@@ -138,7 +147,7 @@
             <li>Apple/Google/Telegram control</li>
             <li>Priority support</li>
           </ul>
-          <a href="#" class="offer-cta contact-btn" data-subject="Request a Quote">Get Started</a>
+          <a href="#contact" class="offer-cta contact-btn" role="button" data-subject="Request a Quote">Get Started</a>
         </div>
 
       </div>
@@ -146,7 +155,7 @@
   </section>
 
   <div class="homes-counter">
-      <h3 class="counter-number" data-target="2400">0</h3>
+      <h3 class="counter-number" data-target="2400" role="presentation">0</h3>
       <span class="counter-plus">+</span>
       <p>Homes Protected</p>
 </div>
@@ -163,14 +172,14 @@
       <h2>Powering Business. <br>Maximizing <span>Performance</span>.</h2>
       <p>Intelligent energy systems that reduce costs, ensure uptime, and drive sustainability for your entire operation.</p>
       <div class="commercial-buttons">
-        <a href="#" class="btn-primary">Schedule a Consultation</a>
+        <a href="#contact" class="btn-primary" role="button" data-contact-open data-subject="Schedule a Consultation">Schedule a Consultation</a>
         <button disabled class="btn-secondary">Explore Solutions</button>
       </div>
     </div>
 
     <div class="commercial-stats-card">
       <div class="stats-card-header">
-        <h4>Real-time Energy Overview</h4>
+        <h4 aria-level="3">Real-time Energy Overview</h4>
         <span class="live-dot"><span class="dot"></span> Live</span>
       </div>
 
@@ -240,7 +249,7 @@
   <div class="container">
     <!-- <span class="hero-tag">INDUSTRIAL ENERGY SOLUTIONS</span> -->
     <div class="solutions-video-wrap industrial-photo-wrap">
-      <img src="assets/industrial-hero.webp" alt="Industrial power substation" class="industrial-photo">
+      <img src="assets/industrial-hero.webp" alt="Industrial power substation" class="industrial-photo" loading="lazy">
 
       <div class="industrial-overlay"></div>
 
@@ -266,40 +275,30 @@
 
 
 <footer>
-
-<div class="container footer-content">
-
+  <div class="container footer-content">
     <div>
-    <h3>SEYVRONA</h3>
-    <p>Next generation renewable energy company.</p>
-
-</div>
-
-<div>
-
-    <h4>Products</h4>
-    <a href="#">Solar</a>
-    <a href="#">Battery</a>
-    <a href="#">EV Charging</a>
-    <a href="#">Security</a>
-
-</div>
-
-<div>
-
-    <h4>Company</h4>
-    <a href="#">About</a>
-    <a href="#">Projects</a>
-    <a href="#">Contact</a>
-
-</div>
-</div>
+      <h3 aria-level="2">SEYVRONA</h3>
+      <p>Next generation renewable energy company.</p>
+    </div>
+    <div>
+      <h4 aria-level="3">Products</h4>
+      <a href="products.html#solar">Solar</a>
+      <a href="products.html#battery">Battery</a>
+      <a href="products.html#ev-charging">EV Charging</a>
+      <a href="products.html#security">Security</a>
+    </div>
+    <div>
+      <h4 aria-level="3">Company</h4>
+      <a href="about.html">About</a>
+      <a href="applications.html">Applications</a>
+      <a href="#contact" role="button" data-contact-open>Contact</a>
+    </div>
+  </div>
 </footer>
 
 
-<script src="scripts/script.js"></script>
 <script type="module" src="scripts/dropdown.js"></script>
-<script src="scripts/counter.js"></script>
-<script src="scripts/commercial-scene.js"></script>
+<script src="scripts/counter.js" defer></script>
+<script src="scripts/commercial-scene.js" defer></script>
 </body>
 </html>

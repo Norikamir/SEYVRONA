@@ -3,16 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technology-SEYVRONA</title>
+    <meta name="description" content="Follow how a single solar panel is engineered — from raw silicon crystal to a power-generating surface.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="SEYVRONA">
+    <meta property="og:title" content="Technology — SEYVRONA">
+    <meta property="og:description" content="Follow how a single solar panel is engineered — from raw silicon crystal to a power-generating surface.">
+    <meta name="twitter:card" content="summary">
+    <title>Technology — SEYVRONA</title>
     <link rel="stylesheet" href="Css/style.css">
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/Icons/favicon.png">
+    <link rel="icon" type="image/png" sizes="180x180" href="assets/Icons/favicon.png">
     <link rel="stylesheet" href="Css/technology.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;800&family=Michroma&display=swap" rel="stylesheet">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer crossorigin="anonymous"></script>
     <script src="scripts/contact-modal.js" defer></script>
     <script src="scripts/navbar-draw.js" defer></script>
     
@@ -32,7 +39,7 @@
         <span>SEYVRONA</span>
     </a>
 
-<ul class="nav-links">
+<ul class="nav-links" id="primaryNav">
   <li class="dropdown">
     <a href="solutions.html">Solutions</a><span class="arrow"></span>
     <ul class="dropdown-menu">
@@ -47,13 +54,13 @@
     <li><a href="about.html">About Us</a></li>
 
     <li>
-      <a class="contact-btn contact-btn-mobile">Contact Us</a>
+      <a href="#contact" class="contact-btn contact-btn-mobile" role="button">Contact Us</a>
     </li>
 </ul>
 
-<a class="contact-btn">Contact Us</a>
+<a href="#contact" class="contact-btn" role="button">Contact Us</a>
 
-<button class="menu-toggle" id="menuToggle" aria-label="Menu">
+<button type="button" class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="primaryNav">
     <span></span>
     <span></span>
     <span></span>
@@ -67,9 +74,9 @@
 
 <div class="tech-process-intro">
   <span class="hero-tag">HOW IT'S MADE</span>
-  <h2><span class="word">From</span> <span class="word">Raw</span> <span class="word">Silicon</span>
+  <h1><span class="word">From</span> <span class="word">Raw</span> <span class="word">Silicon</span>
   <span class="gradient-text"><span class="word">to</span> <span class="word">Solar</span> <span class="word">Power</span></span>
-  </h2>
+  </h1>
   <p>Scroll to follow how a single solar panel is engineered — from raw crystal to a power-generating surface.</p>
 
   <div class="scroll-indicator">
@@ -86,7 +93,7 @@
  <div class="tech-process-pin">
 
   <div class="process-video-frame">
-    <canvas id="processCanvas" class="process-video"></canvas>
+    <canvas id="processCanvas" class="process-video" width="760" height="428" role="img" aria-label="Animation: a solar panel made step by step, from raw silicon to a finished module"></canvas>
     <div class="process-video-glow"></div>
 
   <div class="video-preloader" id="videoPreloader">
@@ -95,7 +102,7 @@
   </div>
 
   <div class="process-info">
-    <div class="process-step-number" id="processStepNumber">01 / 05</div>
+    <div class="process-step-number" id="processStepNumber">01 / 06</div>
     <div class="process-label" id="processLabel">Raw Silicon Ingot</div>
     <div class="process-trust" id="processTrust">99.999% purity — the foundation of a 25-year lifespan</div>
 
@@ -109,32 +116,30 @@
 </section>
 
 <footer>
-<div class="container footer-content">
+  <div class="container footer-content">
     <div>
-    <h3>SEYVRONA</h3>
-    <p>Next generation renewable energy company.</p>
+      <h3 aria-level="2">SEYVRONA</h3>
+      <p>Next generation renewable energy company.</p>
     </div>
     <div>
-
-    <h4>Products</h4>
-    <a href="#">Solar</a>
-    <a href="#">Battery</a>
-    <a href="#">EV Charging</a>
-    <a href="#">Security</a>
+      <h4 aria-level="3">Products</h4>
+      <a href="products.html#solar">Solar</a>
+      <a href="products.html#battery">Battery</a>
+      <a href="products.html#ev-charging">EV Charging</a>
+      <a href="products.html#security">Security</a>
     </div>
-
     <div>
-    <h4>Company</h4>
-    <a href="#">About</a>
-    <a href="#">Projects</a>
-    <a href="#">Contact</a>
+      <h4 aria-level="3">Company</h4>
+      <a href="about.html">About</a>
+      <a href="applications.html">Applications</a>
+      <a href="#contact" role="button" data-contact-open>Contact</a>
     </div>
-</div>
+  </div>
 </footer>
 
 
 
 <script type="module" src="scripts/dropdown.js"></script>
-<script src="scripts/technology.js"></script>
+<script src="scripts/technology.js" defer></script>
 </body>
 </html>
