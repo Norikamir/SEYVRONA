@@ -19,13 +19,15 @@ function animateCounter(el, target, duration = 2000) {
 }
 
 const counterEls = document.querySelectorAll('.counter-number');
+const counterReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const counterObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             const el = entry.target;
             const target = parseInt(el.dataset.target, 10);
-            animateCounter(el, target);
+            if (counterReducedMotion) el.textContent = target.toLocaleString();
+            else animateCounter(el, target);
             counterObserver.unobserve(el);
         }
     });

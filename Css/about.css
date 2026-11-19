@@ -1,27 +1,6 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+/* about.css — page-specific rules; shared rules live in style.css (loaded first) */
 html{
     scroll-behavior:smooth;
-}
-body{
-    background:#050b17;
-    color:#fff;
-    overflow-x:hidden;
-    font-family:'Exo 2', sans-serif;
-}
-/* Background */
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:
-    radial-gradient(circle at 30% 30%, rgba(255,180,80,.08), transparent 45%),
-    radial-gradient(circle at 70% 70%, rgba(0,255,200,.06), transparent 40%),
-    #08090c;
-    z-index:-2;
 }
 body::after{
     content:"";
@@ -33,20 +12,6 @@ body::after{
     background-size:60px 60px;
     opacity:.25;
     z-index:-1;
-}
-/* Container */
-.container{
-    width:min(1280px,92%);
-    margin:auto;
-}
-/* Navbar with Glassmorphism */
-header{
-    position:fixed;
-    width:100%;
-    top:0;
-    left:0;
-    z-index:1000;
-    padding:20px 0;
 }
 .navbar{
     width:min(1280px,92%);
@@ -64,18 +29,10 @@ header{
     position:relative;
     z-index:10;
     opacity:0;
+    visibility:hidden;          /* L13: not clickable while still invisible */
     transform:scale(0.96);
     animation:revealNav 0.8s ease forwards;
     animation-delay:1.2s;  
-}
-.logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    font-size:22px;
-    font-weight:700;
-    text-decoration:none;
-    color:inherit;
 }
 .logo span{
   font-family:'Michroma', sans-serif;
@@ -83,13 +40,6 @@ header{
   opacity:0;
   animation:powerOn 1s ease forwards;
   animation-delay:1.2s;
-}
-.logo-img{
-    width:32px;
-    height:32px;
-    background:url("../assets/Icons/image-logo.png") center/cover no-repeat;
-    box-shadow:none;
-    cursor: pointer;
 }
 .nav-links{
     display:flex;
@@ -136,34 +86,6 @@ header{
 .nav-links li.dropdown{
     position:relative;
 }
-.dropdown-menu{
-    position:fixed;
-    min-width:140px;
-    list-style:none;
-    padding:8px 0;
-    margin:0;
-    background:rgba(15,20,32,.95);
-    backdrop-filter:blur(18px);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:12px;
-    opacity:0;
-    visibility:hidden;
-    transform:translateY(-8px);
-    transition:.3s;
-    z-index:1001;
-}
-.dropdown-menu::before{
-    content:'';
-    position:absolute;
-    top:-6px;
-    left:20px;
-    width:12px;
-    height:12px;
-    background:rgba(15,20,32,.95);
-    border-left:1px solid rgba(255,255,255,.08);
-    border-top:1px solid rgba(255,255,255,.08);
-    transform:rotate(45deg);
-}
 .dropdown-menu.active{
     opacity:1;
     visibility:visible;
@@ -183,17 +105,6 @@ header{
     color:#27f4ff;
     background:rgba(39,244,255,.06);
 }
-.arrow{
-    display:inline-block;
-    width:6px;
-    height:6px;
-    border-right:1.5px solid currentColor;
-    border-bottom:1.5px solid currentColor;
-    transform:rotate(45deg);
-    margin-left:4px;
-    margin-bottom:2px;
-    transition:.3s;
-}
 .contact-btn{
     text-decoration:none;
     color:#fff;
@@ -205,28 +116,6 @@ header{
 .contact-btn:hover{
     transform:translateY(-4px);
     box-shadow:0 15px 35px rgba(0,180,255,.35);
-}
-@keyframes powerOn{
-  0%{
-    opacity:0;
-    text-shadow:0 0 20px #2ce5ff, 0 0 40px #2ce5ff;
-    letter-spacing:4px;
-  }
-  60%{
-    opacity:1;
-    text-shadow:0 0 15px #2ce5ff;
-  }
-  100%{
-    opacity:1;
-    text-shadow:0 0 4px rgba(44,229,255,.4);
-    letter-spacing:normal;
-  }
-}
-@keyframes drawBorder{
-  to{ stroke-dashoffset:0; }
-}
-@keyframes revealNav{
-  to{ opacity:1; transform:scale(1); }
 }
 /* HERO */
 .hero{
@@ -262,18 +151,6 @@ header{
     margin-bottom:24px;
     box-shadow:0 0 20px rgba(44,229,255,.1);
     width:fit-content;
-}
-.tag-pulse{
-    width:7px;
-    height:7px;
-    border-radius:50%;
-    background:#2ce5ff;
-    box-shadow:0 0 10px #2ce5ff;
-    animation:pulseDot 1.8s infinite;
-}
-@keyframes pulseDot{
-    0%, 100% { transform:scale(1); opacity:1; }
-    50% { transform:scale(1.5); opacity:0.4; }
 }
 .hero h1{
     font-family:'Michroma', sans-serif;
@@ -331,10 +208,6 @@ header{
     transform:translateY(-4px);
     box-shadow:0 10px 25px rgba(0,180,255,.15);
 }
-.btn-icon{
-    color:#2ce5ff;
-    transition:transform .3s ease;
-}
 .btn-secondary:hover .btn-icon{
     transform:scale(1.15);
 }
@@ -344,10 +217,6 @@ header{
   align-items:center;
   gap:16px;
   margin-top:40px;
-}
-.avatar-stack{
-  display:flex;
-  align-items:center;
 }
 .avatar-img{
   width:42px;
@@ -411,35 +280,6 @@ header{
   overflow:hidden;
   border-radius:24px;
 }
-#webgl{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  display:block;
-  z-index:1;
-  opacity:0;
-  transition:opacity 1.2s ease;
-}
-#webgl.loaded{
-  opacity:1;
-}
-.tooltip{
-  position:absolute;
-  display:none;
-  padding:14px 18px;
-  background:rgba(10,20,35,.9);
-  border:1px solid rgba(44,229,255,.4);
-  border-radius:14px;
-  backdrop-filter:blur(10px);
-  color:#fff;
-  max-width:220px;
-  pointer-events:none;
-  z-index:10;
-  transform:translate(-50%, -120%);
-  box-shadow:0 10px 30px rgba(0,180,255,.2);
-}
 .tooltip h4{
   font-size:15px;
   color:#2ce5ff;
@@ -449,10 +289,6 @@ header{
   font-size:13px;
   color:#c3d3e4;
   line-height:1.5;
-}
-/* Sections */
-section{
-    padding:120px 0;
 }
 .section-title{
     text-align:center;
@@ -464,13 +300,6 @@ section{
 }
 .section-title p{
     color:#96a4b9;
-}
-/* ECOSYSTEM ORBIT */
-.ecosystem{ padding:140px 0; }
-.ecosystem-header{ max-width:600px; margin-bottom:80px; }
-.eyebrow{
-  color:#2ce5ff; font-size:13px; letter-spacing:2px;
-  font-weight:600; display:block; margin-bottom:16px;
 }
 .ecosystem-header h2{ font-size:44px; line-height:1.15; margin-bottom:20px; }
 .ecosystem-header p{ color:#96a4b9; font-size:16px; line-height:1.7; }
@@ -488,14 +317,6 @@ section{
   height:100%;
   overflow:visible;
   z-index:1;
-}
-.orbit-line{
-  fill:none;
-  stroke-width:1.5;
-  stroke-dasharray:600;
-  stroke-dashoffset:600;
-  opacity:.8;
-  filter:drop-shadow(0 0 4px currentColor);
 }
 .orbit-diagram.active .orbit-line{
   animation:drawLine 1s ease forwards;
@@ -546,35 +367,15 @@ section{
 .orbit-diagram.active .orbit-node{ opacity:1; }
 .orbit-node h4{ font-size:13px; letter-spacing:1px; margin-bottom:6px; color:#fff; }
 .orbit-node p{ font-size:12px; color:#96a4b9; line-height:1.5; }
-@keyframes drawLine{ to{ stroke-dashoffset:0; } }
 /* Cards */
 .cards{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
     gap:30px;
 }
-.card{
-    padding:40px;
-    border-radius:25px;
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.08);
-    backdrop-filter:blur(18px);
-    transition:.35s;
-}
 .card:hover{
     transform:translateY(-10px);
     box-shadow:0 20px 40px rgba(0,200,255,.18);
-}
-.card-icon{
-    width:70px;
-    height:70px;
-    border-radius:18px;
-    background:linear-gradient(135deg,#19f5ff,#0b7dff);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:30px;
-    margin-bottom:25px;
 }
 .card h3{
     margin-bottom:16px;
@@ -594,6 +395,7 @@ section{
     position:relative;
     width:100%;
     height:100vh;
+    height:100svh;
     min-height:560px;
     max-height:900px;
     overflow:hidden;
@@ -709,11 +511,6 @@ section{
     margin:25px 0 45px;
     color:#c3d3e4;
 }
-/* Footer */
-footer{
-    border-top:1px solid rgba(255,255,255,.08);
-    padding:70px 0;
-}
 .footer-content{
     display:grid;
     grid-template-columns:2fr 1fr 1fr;
@@ -788,27 +585,6 @@ footer{
   flex-direction:column;
   align-items:center;
   gap:20px;
-}
-.loading-logo{
-  font-family:'Michroma', sans-serif;
-  font-size:16px;
-  letter-spacing:2px;
-  color:#9fb3c8;
-  text-transform:uppercase;
-}
-.progress-track{
-  width:200px;
-  height:3px;
-  background:rgba(255,255,255,.1);
-  border-radius:4px;
-  overflow:hidden;
-  margin-top:20px;
-}
-#progress-bar{
-  height:100%;
-  width:0%;
-  background:linear-gradient(90deg,#2ce5ff,#66ffcb);
-  transition:width .2s ease;
 }
 /* ABOUT PAGE */
 .active{
@@ -933,13 +709,13 @@ footer{
   overflow:hidden;
 }
 .office-image-interior{
-  background-image:url("../assets/new-york-solar.png");
+  background-image:url("../assets/new-york-solar.webp");
 }
 .office-image-exterior{
-  background-image:url("../assets/our_office.png");
+  background-image:url("../assets/our_office.webp");
 }
 .office-image-worker{
-  background-image:url("../assets/worker.png");
+  background-image:url("../assets/worker.webp");
 }
 .office-content h2{
   font-size:36px;
@@ -959,7 +735,6 @@ footer{
 @media(max-width:600px){
   .stats-grid{ grid-template-columns:1fr; }
 }
-
 /* Responsive Media Queries */
 @media(max-width:1100px){
   
@@ -1156,7 +931,7 @@ footer{
   .hero-stats{ flex-direction:row; gap:10px; }
   .stat{ padding:14px; }
   .stat h2{ font-size:22px; }
-  .stat p{ font-size:11px; }
+  .stat p{ font-size:12px; }
   
   .navbar{
       flex-wrap:wrap;
@@ -1188,30 +963,20 @@ footer{
   }
   .stat{ padding:10px 6px; }
   .stat h2{ font-size:18px; }
-  .stat p{ font-size:10px; }
+  .stat p{ font-size:12px; }
   .hero h1{ font-size:26px; }
   .hero-right{ height:260px; }
 }
-
-
-/* ========================================================== */
-/*                       CONTACT MODAL                        */
-/* ========================================================== */
-
-.contact-modal-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(5,8,15,.75);
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
-  z-index:2000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  opacity:0;
-  visibility:hidden;
-  transition:.35s ease;
-  padding:20px;
+/* H6: logo and burger stay on one line down to 320 px */
+@media(max-width:400px){
+  .navbar{ flex-wrap:nowrap; }
+  .logo{ min-width:0; }
+  .logo span{ white-space:nowrap; }
+}
+@media(max-width:360px){
+  .navbar{ padding:14px 12px; gap:8px; }
+  .logo{ gap:8px; }
+  .menu-toggle{ width:48px; height:48px; }
 }
 .contact-modal-overlay.active{
   opacity:1;
@@ -1245,50 +1010,11 @@ footer{
   0%,100%{ box-shadow:0 25px 60px -10px rgba(0,0,0,.6), 0 0 40px rgba(44,229,255,.12), 0 0 75px rgba(85,255,204,.06); }
   50%{ box-shadow:0 25px 60px -10px rgba(0,0,0,.6), 0 0 55px rgba(255,204,85,.10), 0 0 90px rgba(160,102,255,.08); }
 }
-.contact-modal-close{
-  position:absolute;
-  top:20px;
-  right:20px;
-  width:36px;
-  height:36px;
-  border-radius:50%;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.04);
-  color:#9ca7ba;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  transition:.3s;
-}
 .contact-modal-close:hover{
   color:#fff;
   border-color:#2ce5ff;
   box-shadow:0 0 15px rgba(44,229,255,.3);
   transform:rotate(90deg);
-}
-.contact-modal-tag{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  color:#2ce5ff;
-  letter-spacing:2px;
-  font-size:11px;
-  font-weight:700;
-  padding:6px 14px;
-  border-radius:30px;
-  background:rgba(44,229,255,.07);
-  border:1px solid rgba(44,229,255,.25);
-  margin-bottom:18px;
-}
-.contact-modal-tag::before{
-  content:"";
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:#55ffcc;
-  box-shadow:0 0 8px #55ffcc;
-  animation:pulseDot 1.8s infinite;
 }
 .contact-modal h3{
   font-family:'Michroma', sans-serif;
@@ -1307,119 +1033,6 @@ footer{
   line-height:1.7;
   margin-bottom:28px;
 }
-.contact-form{
-  display:flex;
-  flex-direction:column;
-  gap:18px;
-}
-.contact-form-row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-}
-.contact-field{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-.contact-field[data-field="name"]{ --field-color:#55ffcc; }
-.contact-field[data-field="email"]{ --field-color:#ffcc55; }
-.contact-field[data-field="phone"]{ --field-color:#ff9955; }
-.contact-field[data-field="subject"]{ --field-color:#a066ff; }
-.contact-field[data-field="message"]{ --field-color:#2ce5ff; }
-.contact-field label{
-  display:flex;
-  align-items:center;
-  gap:7px;
-  font-size:12px;
-  letter-spacing:.5px;
-  color:#9ca7ba;
-  text-transform:uppercase;
-}
-.contact-field label::before{
-  content:"";
-  width:5px;
-  height:5px;
-  border-radius:50%;
-  background:var(--field-color, #2ce5ff);
-  box-shadow:0 0 6px var(--field-color, #2ce5ff);
-}
-.contact-field input,
-.contact-field select,
-.contact-field textarea{
-  font-family:'Exo 2', sans-serif;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:12px;
-  padding:13px 16px;
-  color:#fff;
-  font-size:14px;
-  outline:none;
-  transition:.3s;
-}
-.contact-field select option{
-  background:#0a1020;
-  color:#fff;
-}
-.contact-field input::placeholder,
-.contact-field textarea::placeholder{
-  color:#5c6a7f;
-}
-.contact-field input:focus,
-.contact-field select:focus,
-.contact-field textarea:focus{
-  border-color:var(--field-color, #2ce5ff);
-  background:rgba(255,255,255,.05);
-  box-shadow:0 0 0 3px color-mix(in srgb, var(--field-color, #2ce5ff) 18%, transparent);
-}
-.contact-field textarea{
-  resize:none;
-  min-height:100px;
-}
-.contact-field.error input,
-.contact-field.error select,
-.contact-field.error textarea{
-  border-color:#ff5c7a;
-}
-.contact-field-error{
-  font-size:12px;
-  color:#ff5c7a;
-  display:none;
-}
-.contact-field.error .contact-field-error{
-  display:block;
-}
-.contact-submit-btn{
-  margin-top:6px;
-  border:none;
-  cursor:pointer;
-  width:100%;
-  color:#fff;
-  padding:16px 34px;
-  border-radius:60px;
-  font-weight:600;
-  font-size:16px;
-  background:linear-gradient(135deg,#26d9ff,#156fff);
-  transition:all .35s ease;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  position:relative;
-  overflow:hidden;
-}
-.contact-submit-btn::before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:-100%;
-  width:60%;
-  height:100%;
-  background:linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent);
-  transform:skewX(-20deg);
-  transition:left .6s ease;
-  pointer-events:none;
-}
 .contact-submit-btn:hover::before{
   left:130%;
 }
@@ -1427,45 +1040,68 @@ footer{
   transform:translateY(-4px);
   box-shadow:0 20px 40px rgba(30,170,255,.4);
 }
-.contact-submit-btn:disabled{
-  opacity:.6;
-  cursor:not-allowed;
-  transform:none;
-  box-shadow:none;
-}
-.contact-submit-btn .spinner{
-  width:16px;
-  height:16px;
-  border-radius:50%;
-  border:2px solid rgba(255,255,255,.4);
-  border-top-color:#fff;
-  animation:contactSpin .7s linear infinite;
-  display:none;
-}
-.contact-submit-btn.loading .spinner{ display:inline-block; }
-.contact-submit-btn.loading .contact-submit-text{ opacity:.7; }
-@keyframes contactSpin{ to{ transform:rotate(360deg); } }
-.contact-form-status{
-  display:none;
-  align-items:center;
-  gap:10px;
-  padding:14px 18px;
-  border-radius:12px;
-  font-size:14px;
-}
-.contact-form-status.show{ display:flex; }
-.contact-form-status.success{
-  background:rgba(85,255,204,.08);
-  border:1px solid rgba(85,255,204,.3);
-  color:#55ffcc;
-}
-.contact-form-status.error{
-  background:rgba(255,92,122,.08);
-  border:1px solid rgba(255,92,122,.3);
-  color:#ff5c7a;
-}
 @media(max-width:520px){
   .contact-modal{ padding:28px 22px; border-radius:20px; }
   .contact-form-row{ grid-template-columns:1fr; }
   .contact-modal h3{ font-size:22px; }
+}
+/* ========================================================== */
+/*          ACCESSIBILITY, MODAL SIZING, REDUCED MOTION        */
+/* ========================================================== */
+
+/* L8: the page no longer jumps sideways when the modal hides the scrollbar */
+html{
+    scrollbar-gutter:stable;
+}
+/* M10: visible keyboard focus (mouse clicks keep the old look) */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:not([tabindex="-1"]):focus-visible{
+    outline:2px solid #2ce5ff;
+    outline-offset:3px;
+}
+.contact-modal:focus,
+.contact-modal:focus-visible{
+    outline:none;
+}
+/* L8 / M4: the modal fits the small viewport (iOS toolbars included)
+   and scrolls inside itself; compact spacing on short screens */
+.contact-modal{
+    max-height:calc(100svh - 40px);
+}
+@media(max-height:700px){
+    .contact-modal-overlay{ padding:12px; }
+    .contact-modal{ max-height:calc(100svh - 24px); padding-top:26px; padding-bottom:22px; }
+    .contact-modal > p{ margin-bottom:14px; }
+    .contact-modal h3{ margin-bottom:6px; }
+    .contact-form{ gap:12px; }
+    .contact-field textarea{ min-height:76px; }
+}
+/* M18: reduced motion — every animation and transition ends at once,
+   so content is shown in its final state; scroll-driven pieces keep working */
+@media(prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *,
+    *::before,
+    *::after{
+        animation-duration:0.01ms !important;
+        animation-delay:0s !important;
+        animation-iteration-count:1 !important;
+        transition-duration:0.01ms !important;
+        transition-delay:0s !important;
+    }
+}
+/* L11: touch-friendly footer links (hit area >= 44px high) on narrow / touch screens */
+@media(max-width:900px), (pointer:coarse){
+  .footer-content a{
+    padding:12px 0;
+    margin-bottom:0;
+  }
+}
+/* Page uses ScrollTrigger: native smooth scrolling must be off, otherwise
+   ScrollTrigger's scroll reset during refresh() is animated and trigger
+   positions are measured wrongly after a resize / rotation. */
+html{
+  scroll-behavior: auto;
 }

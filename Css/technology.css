@@ -14,24 +14,24 @@
   padding: 160px 20px 40px;
 }
 
-.tech-process-intro h2{
+.tech-process-intro h1{
   font-family: 'Michroma', sans-serif;
   font-size: 36px;
   line-height: 1.3;
   margin: 16px 0 18px;
 }
 
-.tech-process-intro h2 .gradient-text{
+.tech-process-intro h1 .gradient-text{
   background: linear-gradient(90deg,#1ef6ff,#18b5ff,#66ffcb);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.tech-process-intro h2 .word{
+.tech-process-intro h1 .word{
   display: inline-block;
 }
 
-.tech-process-intro h2 span{
+.tech-process-intro h1 span{
   background: linear-gradient(90deg,#1ef6ff,#18b5ff,#66ffcb);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -47,6 +47,7 @@
   position: relative;
   width: 100%;
   height: 100vh;
+  height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -172,7 +173,7 @@
     padding: 130px 20px 30px;
   }
 
-  .tech-process-intro h2{
+  .tech-process-intro h1{
     font-size: 26px;
   }
 
@@ -232,14 +233,14 @@
   padding: 160px 20px 40px;
 }
 
-.tech-process-intro h2{
+.tech-process-intro h1{
   font-family: 'Michroma', sans-serif;
   font-size: 36px;
   line-height: 1.3;
   margin: 16px 0 18px;
 }
 
-.tech-process-intro h2 span{
+.tech-process-intro h1 span{
   background: linear-gradient(90deg,#1ef6ff,#18b5ff,#66ffcb);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -255,6 +256,7 @@
   position: relative;
   width: 100%;
   height: 100vh;
+  height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -299,6 +301,19 @@
   border-top-color: #2ce5ff;
   border-radius: 50%;
   animation: preloaderSpin 0.9s linear infinite;
+}
+
+.video-preloader.is-error .video-preloader-ring{
+  display: none;
+}
+
+.video-preloader-message{
+  max-width: 80%;
+  margin: 0;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #9fb3c4;
 }
 
 .video-preloader-percent{
@@ -398,7 +413,7 @@
     padding: 130px 20px 30px;
   }
 
-  .tech-process-intro h2{
+  .tech-process-intro h1{
     font-size: 26px;
   }
 
@@ -418,4 +433,66 @@
     border-radius: 12px;
   }
 
+}
+
+/* ================================
+   SHORT SCREENS: fit the pinned frame below the fixed header
+   (1366×768, 1024×768, phones in landscape)
+================================ */
+
+@media (max-height: 820px){
+
+  .tech-process-pin{
+    --tech-top: 116px;      /* fixed header + breathing room */
+    --tech-reserve: 160px;  /* caption, progress bar and gap */
+    padding-top: var(--tech-top);
+    padding-bottom: 12px;
+  }
+
+  .process-video-frame{
+    width: min(760px, 88vw, calc((100vh - var(--tech-top) - 12px - var(--tech-reserve)) * 760 / 428));
+    width: min(760px, 88vw, calc((100svh - var(--tech-top) - 12px - var(--tech-reserve)) * 760 / 428));
+  }
+
+}
+
+@media (max-height: 820px) and (max-width: 1100px){
+
+  .tech-process-pin{
+    --tech-top: 110px;
+  }
+
+}
+
+@media (orientation: landscape) and (max-height: 500px){
+
+  .tech-process-pin{
+    --tech-reserve: 92px;
+    gap: 10px;
+    padding-bottom: 8px;
+  }
+
+  .process-step-number{
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+
+  .process-label{
+    font-size: 14px;
+    min-height: 20px;
+    margin-bottom: 4px;
+  }
+
+  .process-trust{
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+
+}
+
+/* Pinned scroll-driven section: native smooth scrolling must be off, otherwise
+   ScrollTrigger's scroll reset during refresh() is animated and the pin start
+   is measured wrongly after a resize / rotation. */
+html{
+  scroll-behavior: auto;
 }

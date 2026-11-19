@@ -64,6 +64,7 @@ header{
     position:relative;
     z-index:10;
     opacity:0;
+    visibility:hidden;          /* L13: not clickable while still invisible */
     transform:scale(0.96);
     animation:revealNav 0.8s ease forwards;
     animation-delay:1.2s;  
@@ -226,7 +227,8 @@ header{
   to{ stroke-dashoffset:0; }
 }
 @keyframes revealNav{
-  to{ opacity:1; transform:scale(1); }
+  from{ visibility:visible; }
+  to{ opacity:1; transform:scale(1); visibility:visible; }
 }
 /* HERO */
 .hero{
@@ -236,7 +238,7 @@ header{
 }
 .hero-inner{
   display:grid;
-  grid-template-columns:30% 70%;
+  grid-template-columns:minmax(0,3fr) minmax(0,7fr);
   align-items: start;
   gap:40px;
   padding-top: 20px;
@@ -681,9 +683,13 @@ footer{
 .card,
 .project-card,
 .stat{
+    transition:1s;
+}
+:where(.js-reveal) .card,
+:where(.js-reveal) .project-card,
+:where(.js-reveal) .stat{
     opacity:0;
     transform:translateY(60px);
-    transition:1s;
 }
 .card.show,
 .project-card.show,
@@ -757,6 +763,9 @@ footer{
   border-radius:4px;
   overflow:hidden;
   margin-top:20px;
+}
+#loading-screen.is-error .progress-track{
+  display:none;
 }
 #progress-bar{
   height:100%;
@@ -897,7 +906,7 @@ footer{
     height:100px !important;
   }
   #loading-screen{
-    display:none !important;
+    background:transparent;
   }
 
 }
@@ -967,7 +976,7 @@ footer{
   .hero-stats{ flex-direction:row; gap:10px; }
   .stat{ padding:14px; }
   .stat h2{ font-size:22px; }
-  .stat p{ font-size:11px; }
+  .stat p{ font-size:12px; }
 
  .navbar{
       flex-wrap:wrap;
@@ -1006,11 +1015,24 @@ footer{
   }
   .stat{ padding:10px 6px; }
   .stat h2{ font-size:18px; }
-  .stat p{ font-size:10px; }
+  .stat p{ font-size:12px; }
   .hero h1{ font-size:26px; }
   .hero-right{ height:360px; }
 }
 
+
+
+/* H6: logo and burger stay on one line down to 320 px */
+@media(max-width:400px){
+  .navbar{ flex-wrap:nowrap; }
+  .logo{ min-width:0; }
+  .logo span{ white-space:nowrap; }
+}
+@media(max-width:360px){
+  .navbar{ padding:14px 12px; gap:8px; }
+  .logo{ gap:8px; }
+  .menu-toggle{ width:48px; height:48px; }
+}
 
 /* ========================================================== */
 /*                       CONTACT MODAL(FORM)                        */
@@ -1303,4 +1325,73 @@ footer{
   .contact-modal{ padding:28px 22px; border-radius:20px; }
   .contact-form-row{ grid-template-columns:1fr; }
   .contact-modal h3{ font-size:22px; }
+}
+
+/* ========================================================== */
+/*          ACCESSIBILITY, MODAL SIZING, REDUCED MOTION        */
+/* ========================================================== */
+
+/* L8: the page no longer jumps sideways when the modal hides the scrollbar */
+html{
+    scrollbar-gutter:stable;
+}
+
+/* M10: visible keyboard focus (mouse clicks keep the old look) */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:not([tabindex="-1"]):focus-visible{
+    outline:2px solid #2ce5ff;
+    outline-offset:3px;
+}
+.contact-modal:focus,
+.contact-modal:focus-visible{
+    outline:none;
+}
+
+/* H10: honeypot field, invisible to people, filled by bots */
+.contact-hp{
+    position:absolute;
+    left:-10000px;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+}
+
+/* L8 / M4: the modal fits the small viewport (iOS toolbars included)
+   and scrolls inside itself; compact spacing on short screens */
+.contact-modal{
+    max-height:calc(100svh - 40px);
+}
+@media(max-height:700px){
+    .contact-modal-overlay{ padding:12px; }
+    .contact-modal{ max-height:calc(100svh - 24px); padding-top:26px; padding-bottom:22px; }
+    .contact-modal > p{ margin-bottom:14px; }
+    .contact-modal h3{ margin-bottom:6px; }
+    .contact-form{ gap:12px; }
+    .contact-field textarea{ min-height:76px; }
+}
+
+/* M18: reduced motion — every animation and transition ends at once,
+   so content is shown in its final state; scroll-driven pieces keep working */
+@media(prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *,
+    *::before,
+    *::after{
+        animation-duration:0.01ms !important;
+        animation-delay:0s !important;
+        animation-iteration-count:1 !important;
+        transition-duration:0.01ms !important;
+        transition-delay:0s !important;
+    }
+}
+
+/* L11: touch-friendly footer links (hit area >= 44px high) on narrow / touch screens */
+@media(max-width:900px), (pointer:coarse){
+  .footer-content a{
+    padding:12px 0;
+    margin-bottom:0;
+  }
 }

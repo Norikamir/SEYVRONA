@@ -2,19 +2,43 @@
 //                     GSAP ANIMATIONS
 // ==========================================================
 
-if (window.gsap && window.ScrollTrigger) {
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// With reduced motion the content is simply shown in its final state.
+if (window.gsap && window.ScrollTrigger && !prefersReducedMotion) {
   gsap.registerPlugin(ScrollTrigger);
 
   // ----------------------------------------------------------
-  // Split a heading into per-word <span> so each word can fly in
+  // Split a heading into per-word <span> so each word can fly in.
+  // Child elements (e.g. the gradient "Cleaner") are kept intact and
+  // animate as one word, so their styling is not lost.
   // ----------------------------------------------------------
   function splitWords(el) {
-    const text = el.textContent;
-    el.innerHTML = text
-      .split(' ')
-      .map(word => `<span class="word">${word}</span>`)
-      .join(' ');
-    return el.querySelectorAll('.word');
+    const parts = [];
+    [...el.childNodes].forEach((node) => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        node.textContent.split(/(\s+)/).forEach((chunk) => {
+          if (!chunk) return;
+          if (/^\s+$/.test(chunk)) {
+            parts.push(document.createTextNode(chunk));
+          } else {
+            const span = document.createElement('span');
+            span.className = 'word';
+            span.textContent = chunk;
+            parts.push(span);
+          }
+        });
+      } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'BR') {
+        const span = document.createElement('span');
+        span.className = 'word';
+        span.appendChild(node.cloneNode(true));
+        parts.push(span);
+      } else {
+        parts.push(node.cloneNode(true));
+      }
+    });
+    el.replaceChildren(...parts);
+    return el.querySelectorAll(':scope > .word');
   }
 
   // ----------------------------------------------------------
@@ -120,72 +144,24 @@ if (window.gsap && window.ScrollTrigger) {
   });
 
   // ----------------------------------------------------------
-  // Story panels — background parallax + heading fly-in + text slide
-  // ----------------------------------------------------------
-  document.querySelectorAll('.story-panel').forEach((panel) => {
-    
-    const content = panel.querySelector('.story-panel-content');
-    const eyebrow = panel.querySelector('.eyebrow');
-    const heading = panel.querySelector('.story-heading');
-    const paragraph = panel.querySelector('p');
-    const button = panel.querySelector('.btn-primary');
-    const fromRight = content.classList.contains('story-panel-content-right');
-    const words = heading ? splitWords(heading) : [];
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: panel,
-        start: 'top 65%',
-        toggleActions: 'play none none reverse'
-      }
-    });
-
-    tl.from(eyebrow, { opacity: 0, x: fromRight ? 40 : -40, duration: 0.6, ease: 'power3.out' })
-      .from(words, {
-        opacity: 0,
-        y: 70,
-        skewY: 6,
-        stagger: 0.05,
-        duration: 0.9,
-        ease: 'power4.out'
-      }, '-=0.25')
-      .from(paragraph, { opacity: 0, y: 30, duration: 0.6, ease: 'power2.out' }, '-=0.4');
-
-    if (button) {
-      tl.from(button, { opacity: 0, y: 20, scale: 0.9, duration: 0.5, ease: 'back.out(2)' }, '-=0.2');
-    }
-
-    // Subtle parallax drift on the background image itself
-    gsap.fromTo(panel,
-      { backgroundPosition: '50% 40%' },
-      {
-        backgroundPosition: '50% 60%',
-        ease: 'none',
-        scrollTrigger: {
-          trigger: panel,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: true
-        }
-      }
-    );
-  });
-
-  // ----------------------------------------------------------
   // Impact stat numbers count up when scrolled into view
   // ----------------------------------------------------------
+  // Only the leading text node is animated: the <span class="unit">
+  // (kWh, t) stays in place with its own styling.
   document.querySelectorAll('.impact .stat h2').forEach((statEl) => {
-    const raw = statEl.textContent.trim();
+    const textNode = [...statEl.childNodes].find((n) => n.nodeType === Node.TEXT_NODE && n.textContent.trim());
+    if (!textNode) return;
+    const raw = textNode.textContent.trim();
     const match = raw.match(/^([\d.,]+)(.*)$/);
     if (!match) return;
     const numberPart = match[1];
     const suffix = match[2];
     const target = parseFloat(numberPart.replace(/,/g, ''));
-    if (isNaN(target)) return;
+    if (isNaN(target) || prefersReducedMotion) return;
 
     const hasDecimal = numberPart.includes('.');
     const counter = { val: 0 };
-    statEl.textContent = '0' + suffix;
+    textNode.textContent = '0' + suffix;
 
     ScrollTrigger.create({
       trigger: statEl,
@@ -198,10 +174,29 @@ if (window.gsap && window.ScrollTrigger) {
           ease: 'power2.out',
           onUpdate: () => {
             const display = hasDecimal ? counter.val.toFixed(1) : Math.round(counter.val).toLocaleString('en-US');
-            statEl.textContent = display + suffix;
+            textNode.textContent = display + suffix;
           }
         });
       }
     });
   });
+}
+
+
+// Re-measure triggers after a rotation / width change. ScrollTrigger can skip a
+// second resize event on phones, which leaves trigger positions from the old layout.
+if (window.ScrollTrigger) {
+  let lastWidth = window.innerWidth;
+  let resizeTimer;
+  const remeasure = () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (window.innerWidth !== lastWidth) {
+        lastWidth = window.innerWidth;
+        ScrollTrigger.refresh();
+      }
+    }, 300);
+  };
+  window.addEventListener("resize", remeasure);
+  window.addEventListener("orientationchange", remeasure);
 }

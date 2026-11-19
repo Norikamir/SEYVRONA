@@ -3,12 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEYVRONA - Smart Energy Ecosystem</title>
+    <meta name="description" content="Integrated solar systems, EV charging, battery storage, security, and smart home automation in one ecosystem.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="SEYVRONA">
+    <meta property="og:title" content="SEYVRONA — Smart Energy Ecosystem">
+    <meta property="og:description" content="Integrated solar systems, EV charging, battery storage, security, and smart home automation in one ecosystem.">
+    <meta name="twitter:card" content="summary">
+    <title>SEYVRONA — Smart Energy Ecosystem</title>
     <link rel="stylesheet" href="Css/style.css">
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/Icons/favicon.png">
+    <link rel="icon" type="image/png" sizes="180x180" href="assets/Icons/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;800&family=Michroma&display=swap" rel="stylesheet">
+    <script>document.documentElement.classList.add("js-reveal");window.addEventListener("load",function(){if(!window.__seyRevealInit)document.documentElement.classList.remove("js-reveal");});</script>
     <script src="scripts/contact-modal.js" defer></script>
     <script src="scripts/navbar-draw.js" defer></script>
 </head>
@@ -25,7 +35,7 @@
       <span class="logo-img"></span>
       <span>SEYVRONA</span>
   </a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="primaryNav">
       <li class="dropdown">
         <a href="solutions.html">Solutions</a><span class="arrow"></span>
         <ul class="dropdown-menu">
@@ -39,11 +49,11 @@
       <li><a href="applications.html">Applications</a></li>
       <li><a href="about.html">About Us</a></li>
       <li>
-        <a class="contact-btn contact-btn-mobile">Contact Us</a>
+        <a href="#contact" class="contact-btn contact-btn-mobile" role="button">Contact Us</a>
       </li>
     </ul>
-    <a class="contact-btn">Contact Us</a>
-    <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+    <a href="#contact" class="contact-btn" role="button">Contact Us</a>
+    <button type="button" class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="primaryNav">
       <span></span>
       <span></span>
       <span></span>
@@ -57,11 +67,11 @@
         <span class="tag-pulse"></span>
         SMART ENERGY ECOSYSTEM
       </div>
-      <h1>Powering <span>Tomorrow</span>With Intelligent Energy</h1>
+      <h1>Powering <span>Tomorrow</span> With Intelligent Energy</h1>
       <p>Integrated solar systems, EV charging, battery storage, security, and smart home automation in one ecosystem.</p>
       <div class="hero-buttons">
         <a href="solutions.html" class="btn-primary">Explore Solutions</a>
-        <a href="#" class="btn-secondary">
+        <a href="technology.html" class="btn-secondary">
           <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
             <path d="M8 5v14l11-7z"/>
           </svg>
@@ -70,12 +80,12 @@
       </div>
       <div class="social-proof">
         <div class="avatar-stack">
-          <img class="avatar-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Customer">
-          <img class="avatar-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" alt="Customer">
-          <img class="avatar-img" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80" alt="Customer">
+          <img class="avatar-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="" width="42" height="42">
+          <img class="avatar-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" alt="" width="42" height="42">
+          <img class="avatar-img" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80" alt="" width="42" height="42">
         </div>
         <div class="social-proof-text">
-          <h4>2,500+</h4>
+          <h4 role="presentation">2,500+</h4>
           <p>People Trust Us</p>
         </div>
       </div>
@@ -98,8 +108,8 @@
     <!-- Loading-screen-part -->
 
     <div class="hero-right">
-      <canvas id="webgl"></canvas>
-      <div id="loading-screen">
+      <canvas id="webgl" role="img" aria-label="3D energy ecosystem: solar panels, smart home, charger, electric car and security network connected to one core"></canvas>
+      <div id="loading-screen" role="status" aria-live="polite">
         <div class="loading-content">
           <div class="loading-logo">Loading...</div>
           <div class="progress-track">
@@ -124,7 +134,7 @@
     <div class="orbit-diagram" id="orbitDiagram">
       <svg class="orbit-lines" id="orbitLines"></svg>
       <div class="orbit-center">
-        <img src="assets/Icons/optimized/image-logo-hero.webp" alt="logo" loading="lazy">
+        <img src="assets/Icons/optimized/image-logo-hero.webp" alt="SEYVRONA" loading="lazy" width="90" height="90">
       </div>
       <div class="orbit-node" data-label="SOLAR PANELS" data-icon="assets/Icons/optimized/image-logo-panels.webp" data-color="#ffcc55" data-desc="High efficiency panels that capture more power."></div>
       <div class="orbit-node" data-label="EV CHARGING" data-icon="assets/Icons/optimized/image-logo-charging.webp" data-color="#a066ff" data-desc="Fast, reliable charging powered by clean energy."></div>
@@ -169,34 +179,34 @@
   <div class="container">
     <h2>Ready to Build the Future?</h2>
     <p>Let's design your complete smart energy ecosystem.</p>
-    <a href="#" class="btn-primary contact-btn" data-subject="Request a Quote">Get Started</a>
+    <a href="#contact" class="btn-primary contact-btn" role="button" data-subject="Request a Quote">Get Started</a>
   </div>
 </section>
 <footer>
   <div class="container footer-content">
     <div>
-      <h3>SEYVRONA</h3>
+      <h3 aria-level="2">SEYVRONA</h3>
       <p>Next generation renewable energy company.</p>
     </div>
     <div>
-      <h4>Products</h4>
+      <h4 aria-level="3">Products</h4>
       <a href="products.html#solar">Solar</a>
       <a href="products.html#battery">Battery</a>
       <a href="products.html#ev-charging">EV Charging</a>
       <a href="products.html#security">Security</a>
     </div>
     <div>
-      <h4>Company</h4>
+      <h4 aria-level="3">Company</h4>
       <a href="about.html">About</a>
-      <a href="about.html#our-work">Projects</a>
-      
+      <a href="applications.html">Applications</a>
+      <a href="#contact" role="button" data-contact-open>Contact</a>
     </div>
   </div>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/loaders/GLTFLoader.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/meshoptimizer@0.18.1/meshopt_decoder.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js" defer crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/meshoptimizer@0.18.1/meshopt_decoder.js" defer crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js" defer crossorigin="anonymous"></script>
 <script src="scripts/script.js" defer></script>
 <script type="module" src="scripts/dropdown.js"></script>
 </body>
